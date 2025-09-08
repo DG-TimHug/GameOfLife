@@ -1,4 +1,6 @@
-﻿namespace GameOfLife.ConsoleUi;
+﻿using System.Formats.Tar;
+
+namespace GameOfLife.ConsoleUi;
 
 internal static class Program
 {
@@ -8,12 +10,13 @@ internal static class Program
         Console.WriteLine("Before starting lets set the playing field size");
         var boardWidth = GetWindowWidth();
         var boardHeight = GetWindowHeight();
-        var board = new Board(boardWidth, boardHeight);
+        var aliveCells = GetAliveCells();
+        var board = new Board(boardWidth, boardHeight, aliveCells);
         for (var row = 0; row < board.PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < board.PlayingField.GetLength(1); column++)
             {
-                Console.Write(board.PlayingField[row, column] ? "X  " : " X ");
+                Console.Write(board.PlayingField[row, column] ? "■  " : " X ");
             }
             Console.WriteLine();
         }
@@ -40,6 +43,19 @@ internal static class Program
             if (int.TryParse(Console.ReadLine(), out var playingFieldWidth) && playingFieldWidth > 0)
             {
                 return playingFieldWidth;
+            }
+            Console.WriteLine("Please enter a positive and full number.");
+        }
+    }
+
+    private static int GetAliveCells()
+    {
+        while (true)
+        {
+            Console.WriteLine("How many Percent of cells should be alive (0% - 100%)?");
+            if (int.TryParse(Console.ReadLine(), out var aliveCells) && aliveCells is >= 0 and <= 100)
+            {
+                return aliveCells;
             }
             Console.WriteLine("Please enter a positive and full number.");
         }
