@@ -24,11 +24,11 @@ class Program
         while (true)
         {
             Console.WriteLine("How tall should the playing field be?");
-            if (int.TryParse(Console.ReadLine(), out var playingFieldSize))
+            if (int.TryParse(Console.ReadLine(), out var playingFieldHeight) & playingFieldHeight > 0)
             {
-                return playingFieldSize;
+                return playingFieldHeight;
             }
-            Console.WriteLine("Please enter a real number.");
+            Console.WriteLine("Please enter a positive and full number.");
         }
     }
 
@@ -37,11 +37,11 @@ class Program
         while (true)
         {
             Console.WriteLine("How wide should the playing field be?");
-            if (int.TryParse(Console.ReadLine(), out var playingFieldWidth))
+            if (int.TryParse(Console.ReadLine(), out var playingFieldWidth) & playingFieldWidth > 0)
             {
                 return playingFieldWidth;
             }
-            Console.WriteLine("Please enter a real number.");
+            Console.WriteLine("Please enter a positive and full number.");
         }
     }
 }
