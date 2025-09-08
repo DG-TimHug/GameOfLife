@@ -16,7 +16,7 @@ internal static class Program
         {
             for (var column = 0; column < board.PlayingField.GetLength(1); column++)
             {
-                Console.Write(board.PlayingField[row, column] ? "■  " : " X ");
+                Console.Write(board.PlayingField[row, column] ? " ■ " : " X ");
             }
             Console.WriteLine();
         }
