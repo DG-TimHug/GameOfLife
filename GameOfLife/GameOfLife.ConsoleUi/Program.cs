@@ -1,25 +1,25 @@
 ﻿namespace GameOfLife.ConsoleUi;
 
-class Program
+internal static class Program
 {
-    static void Main(string[] args)
+    private static void Main()
     {
         Console.WriteLine("Welcome to Conways Game of Life!");
         Console.WriteLine("Before starting lets set the playing field size");
-        var windowWidth = GetWindowWidth();
-        var windowHeight = GetWindowHeight();
-        var board = new Board(windowWidth, windowHeight);
-        for (var row1 = 0; row1 < board.PlayingField.GetLength(0); row1++)
+        var boardWidth = GetWindowWidth();
+        var boardHeight = GetWindowHeight();
+        var board = new Board(boardWidth, boardHeight);
+        for (var row = 0; row < board.PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < board.PlayingField.GetLength(1); column++)
             {
-                Console.Write(board.PlayingField[row1, column] ? "X  " : " X ");
+                Console.Write(board.PlayingField[row, column] ? "X  " : " X ");
             }
             Console.WriteLine();
         }
     }
 
-    public static int GetWindowHeight()
+    private static int GetWindowHeight()
     {
         while (true)
         {
@@ -32,7 +32,7 @@ class Program
         }
     }
 
-    public static int GetWindowWidth()
+    private static int GetWindowWidth()
     {
         while (true)
         {
