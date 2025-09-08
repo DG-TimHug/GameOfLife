@@ -6,9 +6,9 @@ internal static class Program
     {
         Console.WriteLine("Welcome to Conways Game of Life!");
         Console.WriteLine("Before starting lets set the playing field size");
-        var windowWidth = GetWindowWidth();
-        var windowHeight = GetWindowHeight();
-        var board = new Board(windowWidth, windowHeight);
+        var boardWidth = GetWindowWidth();
+        var boardHeight = GetWindowHeight();
+        var board = new Board(boardWidth, boardHeight);
         for (var row = 0; row < board.PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < board.PlayingField.GetLength(1); column++)
