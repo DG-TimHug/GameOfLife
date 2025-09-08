@@ -1,11 +1,6 @@
 ﻿namespace GameOfLife;
 
-public class Board
+public class Board(int windowWidth, int windowHeight)
 {
-    public bool[,] PlayingField;
-    public Board(int windowWidth, int windowHeight)
-    {
-        PlayingField = new bool[windowHeight, windowWidth];
-    }
-    
+    public bool[,] PlayingField { get; private set; } = new bool[windowHeight, windowWidth];
 }
