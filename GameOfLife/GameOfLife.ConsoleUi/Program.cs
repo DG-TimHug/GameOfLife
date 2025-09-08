@@ -24,7 +24,7 @@ class Program
         while (true)
         {
             Console.WriteLine("How tall should the playing field be?");
-            if (int.TryParse(Console.ReadLine(), out var playingFieldHeight) & playingFieldHeight > 0)
+            if (int.TryParse(Console.ReadLine(), out var playingFieldHeight) && playingFieldHeight > 0)
             {
                 return playingFieldHeight;
             }
@@ -37,7 +37,7 @@ class Program
         while (true)
         {
             Console.WriteLine("How wide should the playing field be?");
-            if (int.TryParse(Console.ReadLine(), out var playingFieldWidth) & playingFieldWidth > 0)
+            if (int.TryParse(Console.ReadLine(), out var playingFieldWidth) && playingFieldWidth > 0)
             {
                 return playingFieldWidth;
             }
