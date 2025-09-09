@@ -4,25 +4,10 @@ public class Board
 {
     public bool[,] PlayingField { get; private set; }
 
-    public Board(int width, int height, int aliveCellsPrecent)
+    public Board(int height, int width, int aliveCellsPercent)
     {
-        
-        if (width <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(width), "Width must be greater than 0");
-        }
-
-        if (height <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(height), "Height must be greater than 0");
-        }
-
-        if (aliveCellsPrecent is <= 0 or >= 100)
-        {
-            throw new ArgumentOutOfRangeException(nameof(aliveCellsPrecent), "Alive Cells must be greater than 0");
-        }
-        
-        PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPrecent);
+        ValidateBoard(height, width, aliveCellsPercent);
+        PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
     }
     
     private static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
@@ -38,5 +23,23 @@ public class Board
         }
         
         return playingField;
+    }
+
+    private static void ValidateBoard(int height, int width, int aliveCellsPercent)
+    {
+        if (width <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(width), "Width must be greater than 0");
+        }
+
+        if (height <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(height), "Height must be greater than 0");
+        }
+
+        if (aliveCellsPercent is <= 0 or >= 100)
+        {
+            throw new ArgumentOutOfRangeException(nameof(aliveCellsPercent), "Alive Cells must be greater than 0");
+        }
     }
 }
