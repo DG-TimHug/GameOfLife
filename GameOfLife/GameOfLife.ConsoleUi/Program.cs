@@ -29,7 +29,7 @@ internal static class Program
             {
                 return playingFieldHeight;
             }
-            Console.WriteLine("Please enter a positive and full number.");
+            Console.WriteLine("Please enter a number between 0 and 100..");
         }
     }
 
@@ -42,7 +42,7 @@ internal static class Program
             {
                 return playingFieldWidth;
             }
-            Console.WriteLine("Please enter a positive and full number.");
+            Console.WriteLine("Please enter a number between 0 and 100..");
         }
     }
 
@@ -51,11 +51,11 @@ internal static class Program
         while (true)
         {
             Console.WriteLine("How many Percent of cells should be alive (0% - 100%)?");
-            if (int.TryParse(Console.ReadLine(), out var aliveCells) && aliveCells is >= 0 and <= 100)
+            if (int.TryParse(Console.ReadLine(), out var aliveCellsPercent) && aliveCellsPercent is >= 0 and <= 100)
             {
-                return aliveCells;
+                return aliveCellsPercent;
             }
-            Console.WriteLine("Please enter a positive and full number.");
+            Console.WriteLine("Please enter a number between 0 and 100..");
         }
     }
 }

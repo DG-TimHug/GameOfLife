@@ -39,7 +39,7 @@ public class Board
 
         if (aliveCellsPercent is <= 0 or >= 100)
         {
-            throw new ArgumentOutOfRangeException(nameof(aliveCellsPercent), "Alive Cells must be greater than 0");
+            throw new ArgumentOutOfRangeException(nameof(aliveCellsPercent), "Alive Cells must be between greater or equal to 0 and less or equal to 100.");
         }
     }
 }
