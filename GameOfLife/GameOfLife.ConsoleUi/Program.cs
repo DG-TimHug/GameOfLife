@@ -9,15 +9,21 @@ internal static class Program
         var boardWidth = GetWindowWidth();
         var boardHeight = GetWindowHeight();
         var aliveCellsPrecent = GetAliveCellsPercent();
-        var board = new Board(boardHeight, boardWidth, aliveCellsPrecent);
-        for (var row = 0; row < board.PlayingField.GetLength(0); row++)
+        do
         {
-            for (var column = 0; column < board.PlayingField.GetLength(1); column++)
+            var board = new Board(boardHeight, boardWidth, aliveCellsPrecent);
+            for (var row = 0; row < board.PlayingField.GetLength(0); row++)
             {
-                Console.Write(board.PlayingField[row, column] ? " ■ " : " X ");
+                for (var column = 0; column < board.PlayingField.GetLength(1); column++)
+                {
+                    Console.Write(board.PlayingField[row, column] ? " ■ " : " X ");
+                }
+
+                Console.WriteLine();
             }
-            Console.WriteLine();
-        }
+
+            Console.Clear();
+        } while (Board.Alive);
     }
 
     private static int GetWindowHeight()
