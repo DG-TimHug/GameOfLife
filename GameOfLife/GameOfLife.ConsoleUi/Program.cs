@@ -8,12 +8,13 @@ internal static class Program
         Console.WriteLine("Before starting lets set the playing field size");
         var boardWidth = GetWindowWidth();
         var boardHeight = GetWindowHeight();
-        var board = new Board(boardWidth, boardHeight);
+        var aliveCellsPrecent = GetAliveCellsPercent();
+        var board = new Board(boardHeight, boardWidth, aliveCellsPrecent);
         for (var row = 0; row < board.PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < board.PlayingField.GetLength(1); column++)
             {
-                Console.Write(board.PlayingField[row, column] ? "X  " : " X ");
+                Console.Write(board.PlayingField[row, column] ? " ■ " : " X ");
             }
             Console.WriteLine();
         }
@@ -28,7 +29,7 @@ internal static class Program
             {
                 return playingFieldHeight;
             }
-            Console.WriteLine("Please enter a positive and full number.");
+            Console.WriteLine("Please enter a number between 0 and 100..");
         }
     }
 
@@ -41,7 +42,20 @@ internal static class Program
             {
                 return playingFieldWidth;
             }
-            Console.WriteLine("Please enter a positive and full number.");
+            Console.WriteLine("Please enter a number between 0 and 100..");
+        }
+    }
+
+    private static int GetAliveCellsPercent()
+    {
+        while (true)
+        {
+            Console.WriteLine("How many Percent of cells should be alive (0% - 100%)?");
+            if (int.TryParse(Console.ReadLine(), out var aliveCellsPercent) && aliveCellsPercent is >= 0 and <= 100)
+            {
+                return aliveCellsPercent;
+            }
+            Console.WriteLine("Please enter a number between 0 and 100..");
         }
     }
 }
