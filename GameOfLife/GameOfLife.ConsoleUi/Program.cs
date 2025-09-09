@@ -1,6 +1,4 @@
-﻿using System.Formats.Tar;
-
-namespace GameOfLife.ConsoleUi;
+﻿namespace GameOfLife.ConsoleUi;
 
 internal static class Program
 {
@@ -10,8 +8,8 @@ internal static class Program
         Console.WriteLine("Before starting lets set the playing field size");
         var boardWidth = GetWindowWidth();
         var boardHeight = GetWindowHeight();
-        var aliveCells = GetAliveCells();
-        var board = new Board(boardWidth, boardHeight, aliveCells);
+        var aliveCellsPrecent = GetAliveCellsPercent();
+        var board = new Board(boardWidth, boardHeight, aliveCellsPrecent);
         for (var row = 0; row < board.PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < board.PlayingField.GetLength(1); column++)
@@ -48,7 +46,7 @@ internal static class Program
         }
     }
 
-    private static int GetAliveCells()
+    private static int GetAliveCellsPercent()
     {
         while (true)
         {

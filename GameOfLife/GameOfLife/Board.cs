@@ -21,14 +21,22 @@ public class Board
         {
             throw new ArgumentOutOfRangeException(nameof(aliveCellsPrecent), "Alive Cells must be greater than 0");
         }
-        PlayingField = new bool[height, width];
+        
+        PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPrecent);
+    }
+    
+    private static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
+    {
+        var playingField = new bool[height, width];
         var rand = new Random(42);
-        for (var row = 0; row < PlayingField.GetLength(0); row++)
+        for (var row = 0; row < height; row++)
         {
-            for (var column = 0; column < PlayingField.GetLength(1); column++)
+            for (var column = 0; column < width; column++)
             {
-                PlayingField[row, column] = rand.Next(100) < aliveCellsPrecent;
+                playingField[row, column] = rand.Next(100) < aliveCellsPrecent;
             }
         }
+        
+        return playingField;
     }
 }
