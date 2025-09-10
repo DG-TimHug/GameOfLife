@@ -1,5 +1,17 @@
 ﻿namespace GameOfLife;
-
+/*
+ * MASTER TO-DO:
+ * - Implement Rules -> DONE
+ *      - Apply Rules and set cells to false -> let them die when rules aren't met -> DONE
+ * - Check Neighbors for all cells not just alive -> WIP
+ * -
+ * --- CURRENT STATE ---
+ * Rules have been added
+ *     Unsure if they are operational as when code is run board isn't properly made
+ * Might be working ????
+ * sets majority to true -> might be a probelm with Rule 4 as it sets the dead cells to alive
+ *  other than that Check neighbor is operational 
+ */
 public class Board
 {
     public bool[,] PlayingField { get; private set; }
@@ -8,7 +20,8 @@ public class Board
     {
         ValidateBoard(height, width, aliveCellsPercent);
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
-        AmountOfNeighbor();
+        //AmountOfNeighbor();
+        //ApplyRules();
     }
 
     private static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
@@ -44,7 +57,7 @@ public class Board
         }
     }
 
-    private int AmountOfNeighbor()
+    public int AmountOfNeighbor()
     {
         var amountNeighbors = 0;
         for (var row = 0; row < PlayingField.GetLength(0); row++)
@@ -92,6 +105,51 @@ public class Board
         }
 
         return amountNeighbors;
+    }
+
+    public void ApplyRules()
+    {
+        bool[,] updatedCell = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
+        for (var row = 0; row < PlayingField.GetLength(0); row++)
+        {
+            for (var column = 0; column < PlayingField.GetLength(1); column++)
+            {
+                int amountNeighbors = AmountOfNeighbor();
+                bool cellState = PlayingField[row, column];
+                if (cellState)
+                {
+                    if (amountNeighbors < 2)
+                    {
+                        updatedCell[row, column] = false;
+                    }
+                    
+                    if (amountNeighbors is 2 or 3)
+                    {
+                        updatedCell[row, column] = true;
+                    }
+                    
+                    if (amountNeighbors > 3)
+                    {
+                        updatedCell[row, column] = false;
+                    }
+                }
+                else
+                {
+                    if (amountNeighbors == 3)
+                    {
+                        updatedCell[row, column] = true;
+                    }
+                }
+            }
+        }
+
+        for (var row = 0; row < PlayingField.GetLength(0); row++)
+        {
+            for (var column = 0; column < PlayingField.GetLength(1); column++)
+            {
+                PlayingField[row, column] = updatedCell[row, column];
+            }
+        }
     }
 
     private bool CheckNeighbor1(int currentPositionY, int currentPositionX )
@@ -152,8 +210,8 @@ public class Board
     private bool CheckNeighbor6(int currentPositionY, int currentPositionX )
     {
         var newPosY = currentPositionY + 1;
-        var newPosX = currentPositionX -1;
-        if (newPosY >= PlayingField.GetLength(0) || newPosX >= 0 )
+        var newPosX = currentPositionX - 1;
+        if (newPosY >= PlayingField.GetLength(0) || newPosX < 0)
         {
             return false;
         }

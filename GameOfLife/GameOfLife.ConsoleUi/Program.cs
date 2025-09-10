@@ -20,10 +20,13 @@ internal static class Program
                 }
 
                 Console.WriteLine();
+                board.AmountOfNeighbor();
+                board.ApplyRules();
             }
-
+            Thread.Sleep(250);
             Console.Clear();
         } while (board.Alive());
+        Console.WriteLine("Game over");
     }
 
     private static int GetWindowHeight()
