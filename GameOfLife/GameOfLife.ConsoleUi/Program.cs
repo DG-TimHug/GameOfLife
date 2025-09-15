@@ -1,4 +1,6 @@
-﻿namespace GameOfLife.ConsoleUi;
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace GameOfLife.ConsoleUi;
 
 internal static class Program
 {
@@ -10,23 +12,26 @@ internal static class Program
         var boardHeight = GetWindowHeight();
         var aliveCellsPrecent = GetAliveCellsPercent();
         var board = new Board(boardHeight, boardWidth, aliveCellsPrecent);
+        Console.Clear();
         do
         {
             for (var row = 0; row < board.PlayingField.GetLength(0); row++)
             {
                 for (var column = 0; column < board.PlayingField.GetLength(1); column++)
                 {
-                    Console.Write(board.PlayingField[row, column] ? " ■ " : " X ");
+                    Console.Write(board.PlayingField[row, column] ? CellTrue() : CellFalse());
                 }
 
                 Console.WriteLine();
-                board.AmountOfNeighbor();
-                board.ApplyRules();
             }
-            Thread.Sleep(250);
+            Thread.Sleep(100);
+            board.ApplyRules();
+            //Console.ReadKey(true);
             Console.Clear();
         } while (board.Alive());
+        
         Console.WriteLine("Game over");
+        //Console.ReadKey(true);
     }
 
     private static int GetWindowHeight()
@@ -66,5 +71,21 @@ internal static class Program
             }
             Console.WriteLine("Please enter a number between 0 and 100..");
         }
+    }
+
+    private static string CellTrue()
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write(" ■ ");
+        Console.ResetColor();
+        return "";
+    }
+    
+    private static string CellFalse()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write(" X ");
+        Console.ResetColor();
+        return "";
     }
 }

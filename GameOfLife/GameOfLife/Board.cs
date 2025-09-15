@@ -57,53 +57,42 @@ public class Board
         }
     }
 
-    public int AmountOfNeighbor()
-    {
+    private int GetNeighborsCount(int row, int column)
+    { 
         var amountNeighbors = 0;
-        for (var row = 0; row < PlayingField.GetLength(0); row++)
+        if (CheckNeighbor1(row,column ))
         {
-            for (var column = 0; column < PlayingField.GetLength(1); column++)
-            {
-                if (PlayingField[row, column])
-                {
-                    amountNeighbors = 0;
-                    if (CheckNeighbor1(row,column ))
-                    {
-                        amountNeighbors++;
-                    }
-                    if (CheckNeighbor2(row,column ))
-                    {
-                        amountNeighbors++;
-                    }
-                    if (CheckNeighbor3(row,column ))
-                    {
-                        amountNeighbors++;
-                    }
-                    if (CheckNeighbor4(row,column ))
-                    {
-                        amountNeighbors++;
-                    }
-                    if (CheckNeighbor5(row,column ))
-                    {
-                        amountNeighbors++;
-                    }
-                    if (CheckNeighbor6(row,column ))
-                    {
-                        amountNeighbors++;
-                    }
-                    if (CheckNeighbor7(row,column ))
-                    {
-                        amountNeighbors++;
-                    }
-                    if (CheckNeighbor8(row,column ))
-                    {
-                        amountNeighbors++;
-                    }
-                    //Console.WriteLine($"{row}, {column} has {amountNeighbors}");
-                }
-            }
+            amountNeighbors++;
         }
-
+        if (CheckNeighbor2(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor3(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor4(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor5(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor6(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor7(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor8(row,column ))
+        {
+            amountNeighbors++;
+        }
+            
         return amountNeighbors;
     }
 
@@ -114,7 +103,7 @@ public class Board
         {
             for (var column = 0; column < PlayingField.GetLength(1); column++)
             {
-                int amountNeighbors = AmountOfNeighbor();
+                int amountNeighbors = GetNeighborsCount(row, column);
                 bool cellState = PlayingField[row, column];
                 if (cellState)
                 {
@@ -143,13 +132,7 @@ public class Board
             }
         }
 
-        for (var row = 0; row < PlayingField.GetLength(0); row++)
-        {
-            for (var column = 0; column < PlayingField.GetLength(1); column++)
-            {
-                PlayingField[row, column] = updatedCell[row, column];
-            }
-        }
+        PlayingField = updatedCell;
     }
 
     private bool CheckNeighbor1(int currentPositionY, int currentPositionX )
