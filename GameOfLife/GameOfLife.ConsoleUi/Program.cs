@@ -24,14 +24,11 @@ internal static class Program
 
                 Console.WriteLine();
             }
-            Thread.Sleep(100);
             board.ApplyRules();
-            //Console.ReadKey(true);
-            Console.Clear();
+            Console.SetCursorPosition(0,0);
         } while (board.Alive());
         
         Console.WriteLine("Game over");
-        //Console.ReadKey(true);
     }
 
     private static int GetWindowHeight()
