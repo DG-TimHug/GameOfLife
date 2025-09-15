@@ -1,16 +1,7 @@
 ﻿namespace GameOfLife;
 /*
  * MASTER TO-DO:
- * - Implement Rules -> DONE
- *      - Apply Rules and set cells to false -> let them die when rules aren't met -> DONE
- * - Check Neighbors for all cells not just alive -> WIP
- * -
- * --- CURRENT STATE ---
- * Rules have been added
- *     Unsure if they are operational as when code is run board isn't properly made
- * Might be working ????
- * sets majority to true -> might be a probelm with Rule 4 as it sets the dead cells to alive
- *  other than that Check neighbor is operational 
+ * 
  */
 public class Board
 {
@@ -20,8 +11,6 @@ public class Board
     {
         ValidateBoard(height, width, aliveCellsPercent);
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
-        //AmountOfNeighbor();
-        //ApplyRules();
     }
 
     private static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
@@ -56,46 +45,7 @@ public class Board
             throw new ArgumentOutOfRangeException(nameof(aliveCellsPercent), "Alive Cells must be between greater or equal to 0 and less or equal to 100.");
         }
     }
-
-    private int GetNeighborsCount(int row, int column)
-    { 
-        var amountNeighbors = 0;
-        if (CheckNeighbor1(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor2(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor3(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor4(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor5(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor6(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor7(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor8(row,column ))
-        {
-            amountNeighbors++;
-        }
-            
-        return amountNeighbors;
-    }
-
+    
     public void ApplyRules()
     {
         bool[,] updatedCell = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
@@ -133,6 +83,61 @@ public class Board
         }
 
         PlayingField = updatedCell;
+    }
+    
+    public bool Alive()
+    {
+        for (var row = 0; row < PlayingField.GetLength(0); row++)
+        {
+            for (var column = 0; column < PlayingField.GetLength(1); column++)
+            {
+                if (PlayingField[row, column])
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+    
+    private int GetNeighborsCount(int row, int column)
+    { 
+        var amountNeighbors = 0;
+        if (CheckNeighbor1(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor2(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor3(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor4(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor5(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor6(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor7(row,column ))
+        {
+            amountNeighbors++;
+        }
+        if (CheckNeighbor8(row,column ))
+        {
+            amountNeighbors++;
+        }
+            
+        return amountNeighbors;
     }
 
     private bool CheckNeighbor1(int currentPositionY, int currentPositionX )
@@ -223,19 +228,4 @@ public class Board
 
         return PlayingField[newPosY, newPosX];
     }
-    public bool Alive()
-    {
-        for (var row = 0; row < PlayingField.GetLength(0); row++)
-        {
-            for (var column = 0; column < PlayingField.GetLength(1); column++)
-            {
-                if (PlayingField[row, column])
-                {
-                   return true;
-                }
-            }
-        }
-
-        return false;
-    }  
 }

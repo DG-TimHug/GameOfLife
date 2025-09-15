@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace GameOfLife.ConsoleUi;
+﻿namespace GameOfLife.ConsoleUi;
 
 internal static class Program
 {
