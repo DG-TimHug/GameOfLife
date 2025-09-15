@@ -13,7 +13,7 @@ public class Board
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
     }
 
-    private static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
+    public static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
     {
         var playingField = new bool[height, width];
         var rand = new Random(42);
@@ -101,7 +101,7 @@ public class Board
         return false;
     }
     
-    private int GetNeighborsCount(int row, int column)
+    public int GetNeighborsCount(int row, int column)
     { 
         var amountNeighbors = 0;
         if (CheckNeighbor1(row,column ))
