@@ -17,7 +17,14 @@ internal static class Program
             {
                 for (var column = 0; column < board.PlayingField.GetLength(1); column++)
                 {
-                    Console.Write(board.PlayingField[row, column] ? CellTrue() : CellFalse());
+                    if (board.PlayingField[row, column])
+                    {
+                        PrintCellTrue();
+                    }
+                    else
+                    {
+                        PrintCellFalse();
+                    }
                 }
 
                 Console.WriteLine();
@@ -68,19 +75,17 @@ internal static class Program
         }
     }
 
-    private static string CellTrue()
+    private static void PrintCellTrue()
     {
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.Write(" ■ ");
         Console.ResetColor();
-        return "";
     }
     
-    private static string CellFalse()
+    private static void PrintCellFalse()
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.Write(" X ");
         Console.ResetColor();
-        return "";
     }
 }
