@@ -11,6 +11,7 @@ internal static class Program
         var aliveCellsPrecent = GetAliveCellsPercent();
         var board = new Board(boardHeight, boardWidth, aliveCellsPrecent);
         Console.Clear();
+        Console.CursorVisible = false;
         do
         {
             for (var row = 0; row < board.PlayingField.GetLength(0); row++)
@@ -29,6 +30,7 @@ internal static class Program
 
                 Console.WriteLine();
             }
+            //Thread.Sleep(10000);
             board.ApplyRules();
             Console.SetCursorPosition(0,0);
         } while (board.Alive());

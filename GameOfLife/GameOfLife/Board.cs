@@ -9,7 +9,7 @@ public class Board
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
     }
 
-    private static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
+    public static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
     {
         var playingField = new bool[height, width];
         var rand = new Random(42);
@@ -49,7 +49,7 @@ public class Board
         {
             for (var column = 0; column < PlayingField.GetLength(1); column++)
             {
-                int amountNeighbors = GetNeighborsCount(row, column);
+                int amountNeighbors = MasterNeighborCount(row, column);
                 bool cellState = PlayingField[row, column];
                 if (cellState)
                 {
@@ -96,132 +96,24 @@ public class Board
 
         return false;
     }
-    
-    private int GetNeighborsCount(int row, int column)
-    { 
+
+    public int MasterNeighborCount(int row, int column)
+    {
         var amountNeighbors = 0;
-        if (CheckNeighbor1(row,column ))
+        for (int rowoffset= -1; rowoffset <= 1 ; rowoffset++)
         {
-            amountNeighbors++;
+            for (int columnOffSet = -1; columnOffSet <= 1 ; columnOffSet++)
+            {
+                if (rowoffset == 0 && columnOffSet == 0) continue;
+                var newRow = row + rowoffset;
+                var newColumn = column + columnOffSet;
+                if (newRow < PlayingField.GetLength(0) && newColumn < PlayingField.GetLength(1) && newRow >= 0 && newColumn >= 0 && PlayingField[newRow, newColumn])
+                {
+                    amountNeighbors++;
+                }
+            }
         }
-        if (CheckNeighbor2(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor3(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor4(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor5(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor6(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor7(row,column ))
-        {
-            amountNeighbors++;
-        }
-        if (CheckNeighbor8(row,column ))
-        {
-            amountNeighbors++;
-        }
-            
+
         return amountNeighbors;
-    }
-
-    private bool CheckNeighbor1(int currentPositionY, int currentPositionX )
-    {
-        var newPosY = currentPositionY - 1;
-        var newPosX = currentPositionX;
-        if (newPosY < 0)
-        {
-            return false;
-        }
-
-        return PlayingField[newPosY, newPosX];
-    }
-    private bool CheckNeighbor2(int currentPositionY, int currentPositionX )
-    {
-        var newPosY = currentPositionY - 1;
-        var newPosX = currentPositionX + 1;
-        if (newPosY < 0 || newPosX >= PlayingField.GetLength(1))
-        {
-            return false;
-        }
-
-        return PlayingField[newPosY, newPosX];
-    }
-    private bool CheckNeighbor3(int currentPositionY, int currentPositionX )
-    {
-        var newPosX = currentPositionX + 1;
-        var newPosY= currentPositionY;
-        if (newPosX >= PlayingField.GetLength(1))
-        {
-            return false;
-        }
-
-        return PlayingField[newPosY, newPosX];
-    }
-    private bool CheckNeighbor4(int currentPositionY, int currentPositionX )
-    {
-        var newPosX = currentPositionX + 1;
-        var newPosY = currentPositionY + 1;
-        if (newPosY >= PlayingField.GetLength(0) ||newPosX >= PlayingField.GetLength(1))
-        {
-            return false;
-        }
-
-        return PlayingField[newPosY, newPosX];
-    }
-    private bool CheckNeighbor5(int currentPositionY, int currentPositionX )
-    {
-        var newPosY = currentPositionY + 1;
-        var newPosX = currentPositionX;
-        if (newPosY >= PlayingField.GetLength(0))
-        {
-            return false;
-        }
-
-        return PlayingField[newPosY, newPosX];
-    }
-    private bool CheckNeighbor6(int currentPositionY, int currentPositionX )
-    {
-        var newPosY = currentPositionY + 1;
-        var newPosX = currentPositionX - 1;
-        if (newPosY >= PlayingField.GetLength(0) || newPosX < 0)
-        {
-            return false;
-        }
-
-        return PlayingField[newPosY, newPosX];
-    }
-    private bool CheckNeighbor7(int currentPositionY, int currentPositionX )
-    {
-        var newPosY = currentPositionY;
-        var newPosX = currentPositionX -1;
-        if (newPosX < 0 || newPosY < 0 || newPosY >= PlayingField.GetLength(0))
-        {
-            return false;
-        }
-
-        return PlayingField[newPosY, newPosX];
-    }
-    private bool CheckNeighbor8(int currentPositionY, int currentPositionX )
-    {
-        var newPosY = currentPositionY -1;
-        var newPosX = currentPositionX -1;
-        if (newPosX < 0 || newPosY < 0)
-        {
-            return false;
-        }
-
-        return PlayingField[newPosY, newPosX];
     }
 }
