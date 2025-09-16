@@ -17,26 +17,13 @@ public class Tests
     }
 
     [Test]
-    public void CheckBoardGeneration()
-    {
-        // Arrange
-        
-        
-        //Act
-        var result = Board.GenerateRandomPlayingField(30,30,25);
-        
-
-        //Assert
-       //Assert.That(result,)
-    }
-
-    [Test]
     public void CheckRules()
     {
         //Arrange
-        
+        var boardtemp = new Board(5, 5, 50);
         //Act
-        
+        boardtemp.ApplyRules();
         //Assert
+        Assert.That(boardtemp.PlayingField[4,1], Is.False, "should be false");
     }
 }
