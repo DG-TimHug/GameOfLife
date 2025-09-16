@@ -16,7 +16,7 @@ public class Tests
 
     }
 
-    [TestCase()]
+    [Test]
     public void CheckBoardGeneration()
     {
         // Arrange
@@ -30,7 +30,7 @@ public class Tests
        //Assert.That(result,)
     }
 
-    [TestCase()]
+    [Test]
     public void CheckRules()
     {
         //Arrange
