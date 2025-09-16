@@ -1,5 +1,9 @@
 ﻿namespace GameOfLife.Test;
-
+/*
+ * Master TO-DO:
+ * Split applyRules and rename applyRules
+ * Check each rule individually and test
+ */
 public class Tests
 {
     [Test]
