@@ -30,7 +30,7 @@ internal static class Program
 
                 Console.WriteLine();
             }
-            Thread.Sleep(10000);
+            //Thread.Sleep(10000);
             board.ApplyRules();
             Console.SetCursorPosition(0,0);
         } while (board.Alive());

@@ -9,7 +9,7 @@ public class Tests
         var boardtemp = new Board(30, 30, 25);
         
         //Act
-        var result = boardtemp.GetNeighborsCount(0, 0);
+        var result = boardtemp.MasterNeighborCount(0, 0);
 
         //Assert
         Assert.That(result, Is.EqualTo(1), "1 should be the amount of neighbors");
