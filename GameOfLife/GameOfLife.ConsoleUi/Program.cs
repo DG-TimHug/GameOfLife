@@ -10,14 +10,32 @@ internal static class Program
         var boardHeight = GetWindowHeight();
         var aliveCellsPrecent = GetAliveCellsPercent();
         var board = new Board(boardHeight, boardWidth, aliveCellsPrecent);
-        for (var row = 0; row < board.PlayingField.GetLength(0); row++)
+        Console.Clear();
+        Console.CursorVisible = false;
+        do
         {
-            for (var column = 0; column < board.PlayingField.GetLength(1); column++)
+            for (var row = 0; row < board.PlayingField.GetLength(0); row++)
             {
-                Console.Write(board.PlayingField[row, column] ? " ■ " : " X ");
+                for (var column = 0; column < board.PlayingField.GetLength(1); column++)
+                {
+                    if (board.PlayingField[row, column])
+                    {
+                        PrintCellTrue();
+                    }
+                    else
+                    {
+                        PrintCellFalse();
+                    }
+                }
+
+                Console.WriteLine();
             }
-            Console.WriteLine();
-        }
+            //Thread.Sleep(10000);
+            board.ApplyRules();
+            Console.SetCursorPosition(0,0);
+        } while (board.Alive());
+        
+        Console.WriteLine("Game over");
     }
 
     private static int GetWindowHeight()
@@ -57,5 +75,19 @@ internal static class Program
             }
             Console.WriteLine("Please enter a number between 0 and 100..");
         }
+    }
+
+    private static void PrintCellTrue()
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write(" ■ ");
+        Console.ResetColor();
+    }
+    
+    private static void PrintCellFalse()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write(" X ");
+        Console.ResetColor();
     }
 }
