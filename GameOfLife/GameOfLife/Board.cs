@@ -9,7 +9,7 @@ public class Board
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
     }
 
-    public static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
+    private static bool[,] GenerateRandomPlayingField(int height, int width, int aliveCellsPrecent)
     {
         var playingField = new bool[height, width];
         var rand = new Random(42);
@@ -42,45 +42,48 @@ public class Board
         }
     }
     
-    public void ApplyRules()
+    public void PrepareRules()
     {
-        bool[,] updatedCell = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
+        var updatedCell = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
         for (var row = 0; row < PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < PlayingField.GetLength(1); column++)
             {
-                int amountNeighbors = MasterNeighborCount(row, column);
-                bool cellState = PlayingField[row, column];
-                if (cellState)
-                {
-                    if (amountNeighbors < 2)
-                    {
-                        updatedCell[row, column] = false;
-                    }
-                    
-                    if (amountNeighbors is 2 or 3)
-                    {
-                        updatedCell[row, column] = true;
-                    }
-                    
-                    if (amountNeighbors > 3)
-                    {
-                        updatedCell[row, column] = false;
-                    }
-                }
-                else
-                {
-                    if (amountNeighbors == 3)
-                    {
-                        updatedCell[row, column] = true;
-                    }
-                }
+                updatedCell[row, column] = ApplyRules(MasterNeighborCount(row, column), PlayingField[row, column]);
             }
         }
 
         PlayingField = updatedCell;
     }
-    
+
+    public bool ApplyRules(int amountNeighbors, bool cellState)
+    {
+        if (cellState)
+        {
+            if (amountNeighbors < 2)
+            {
+                return false;
+            }
+
+            if (amountNeighbors is 2 or 3)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (amountNeighbors > 3)
+            {
+                return false;
+            }
+        }
+        if (amountNeighbors == 3)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public bool Alive()
     {
         for (var row = 0; row < PlayingField.GetLength(0); row++)
@@ -100,9 +103,9 @@ public class Board
     public int MasterNeighborCount(int row, int column)
     {
         var amountNeighbors = 0;
-        for (int rowoffset= -1; rowoffset <= 1 ; rowoffset++)
+        for (var rowoffset= -1; rowoffset <= 1 ; rowoffset++)
         {
-            for (int columnOffSet = -1; columnOffSet <= 1 ; columnOffSet++)
+            for (var columnOffSet = -1; columnOffSet <= 1 ; columnOffSet++)
             {
                 if (rowoffset == 0 && columnOffSet == 0) continue;
                 var newRow = row + rowoffset;

@@ -7,8 +7,15 @@
     &lt;TestId&gt;NUnit3x::F341E9D9-91D4-4C8A-B491-FB79A572AAF1::net9.0::GameOfLife.Test.Tests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6a528d24_002D2ba0_002D45ff_002D9c7d_002Deee99ad779f1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CheckIfBoardGetsMade" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6a528d24_002D2ba0_002D45ff_002D9c7d_002Deee99ad779f1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CheckIfBoardGetsMade" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::F341E9D9-91D4-4C8A-B491-FB79A572AAF1::net9.0::GameOfLife.Test.Tests.CheckRules&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d873bcf7_002Deb38_002D4c21_002D8730_002D7e2a44009336/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CheckIfRulesWorkWhenThereAreThreeNeighbors" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::F341E9D9-91D4-4C8A-B491-FB79A572AAF1::net9.0::GameOfLife.Test.Tests.CheckIfRulesWorkWhenThereAreThreeNeighbors&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::F341E9D9-91D4-4C8A-B491-FB79A572AAF1::net9.0::GameOfLife.Test.Tests.CheckIfRulesWorkWhenThereAreTwoNeighbors&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::F341E9D9-91D4-4C8A-B491-FB79A572AAF1::net9.0::GameOfLife.Test.Tests.CheckIfRulesWorkWhenThereAreTwoOrLessNeighbors&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
