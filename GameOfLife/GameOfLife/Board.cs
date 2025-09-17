@@ -1,4 +1,8 @@
 ﻿namespace GameOfLife;
+/*
+ * MASTER TO-DO:
+ * 
+ */
 public class Board
 {
     public bool[,] PlayingField { get; private set; }
