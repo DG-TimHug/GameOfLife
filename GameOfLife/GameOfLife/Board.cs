@@ -46,7 +46,7 @@ public class Board
         }
     }
     
-    public void PrepareRules()
+    public void AdvanceGeneration()
     {
         var updatedCell = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
         for (var row = 0; row < PlayingField.GetLength(0); row++)

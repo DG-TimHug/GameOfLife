@@ -31,7 +31,7 @@ internal static class Program
                 Console.WriteLine();
             }
             //Thread.Sleep(10000);
-            board.PrepareRules();
+            board.AdvanceGeneration();
             Console.SetCursorPosition(0,0);
         } while (board.Alive());
         
