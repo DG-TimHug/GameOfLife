@@ -30,12 +30,9 @@ internal static class Program
 
                 Console.WriteLine();
             }
-            //Thread.Sleep(10000);
-            board.ApplyRules();
+            board.AdvanceGeneration();
             Console.SetCursorPosition(0,0);
-        } while (board.Alive());
-        
-        Console.WriteLine("Game over");
+        } while (board.IsGameAlive());
     }
 
     private static int GetWindowHeight()

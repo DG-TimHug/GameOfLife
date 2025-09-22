@@ -2,13 +2,9 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.9\ref\net9.0\System.Reflection.Metadata.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2b020a85_002Dce3b_002D43b5_002Dae5a_002D34c20905f8b9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::F341E9D9-91D4-4C8A-B491-FB79A572AAF1::net9.0::GameOfLife.Test.Tests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0babf458_002Dd271_002D40c3_002D9a44_002D3f4c1c0380e7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6a528d24_002D2ba0_002D45ff_002D9c7d_002Deee99ad779f1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CheckIfBoardGetsMade" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::F341E9D9-91D4-4C8A-B491-FB79A572AAF1::net9.0::GameOfLife.Test.Tests.CheckIfBoardGetsMade&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	
+	</wpf:ResourceDictionary>
