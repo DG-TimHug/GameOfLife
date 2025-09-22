@@ -88,7 +88,7 @@ public class Board
         return false;
     }
 
-    public bool Alive()
+    public bool IsGameAlive()
     {
         for (var row = 0; row < PlayingField.GetLength(0); row++)
         {
