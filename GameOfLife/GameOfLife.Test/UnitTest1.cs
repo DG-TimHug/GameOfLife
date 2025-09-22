@@ -8,7 +8,7 @@ public class Tests
         var boardtemp = new Board(30, 30, 25);
 
         //Act
-        var result = boardtemp.MasterNeighborCount(0, 0);
+        var result = boardtemp.GetNeighborCount(0, 0);
 
         //Assert
         Assert.That(result, Is.EqualTo(1), "1 should be the amount of neighbors");
@@ -18,10 +18,8 @@ public class Tests
     [Test]
     public void CheckIfRulesWorkWhenThereAreFourOrMoreNeighbors()
     {
-        //arrange
-        var boardtemp = new Board(30, 30, 25);
         //act
-        var result = boardtemp.ApplyRules(4, true);
+        var result = Board.ApplyRules(4, true);
         //Assert
         Assert.That(result, Is.EqualTo(false), "Should return false");
     }
@@ -29,10 +27,8 @@ public class Tests
     [Test]
     public void CheckIfRulesWorkWhenThereAreThreeNeighbors()
     {
-        //arrange
-        var boardtemp = new Board(30, 30, 25);
         //act
-        var result = boardtemp.ApplyRules(3, true);
+        var result = Board.ApplyRules(3, true);
         //Assert
         Assert.That(result, Is.EqualTo(true), "Should return true");
     }
@@ -40,10 +36,8 @@ public class Tests
     [Test]
     public void CheckIfRulesWorkWhenThereAreTwoNeighbors()
     {
-        //arrange
-        var boardtemp = new Board(30, 30, 25);
         //act
-        var result = boardtemp.ApplyRules(2, true);
+        var result = Board.ApplyRules(2, true);
         //Assert
         Assert.That(result, Is.EqualTo(true), "Should return true");
     }
@@ -51,10 +45,8 @@ public class Tests
     [Test]
     public void CheckIfRulesWorkWhenThereAreTwoOrLessNeighbors()
     {
-        //arrange
-        var boardtemp = new Board(30, 30, 25);
         //act
-        var result = boardtemp.ApplyRules(1, true);
+        var result = Board.ApplyRules(1, true);
         //Assert
         Assert.That(result, Is.EqualTo(false), "Should return false");
     }

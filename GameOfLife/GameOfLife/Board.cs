@@ -53,14 +53,14 @@ public class Board
         {
             for (var column = 0; column < PlayingField.GetLength(1); column++)
             {
-                updatedCell[row, column] = ApplyRules(MasterNeighborCount(row, column), PlayingField[row, column]);
+                updatedCell[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
             }
         }
 
         PlayingField = updatedCell;
     }
 
-    public bool ApplyRules(int amountNeighbors, bool cellState)
+    public static bool ApplyRules(int amountNeighbors, bool cellState)
     {
         if (cellState)
         {
@@ -104,7 +104,7 @@ public class Board
         return false;
     }
 
-    public int MasterNeighborCount(int row, int column)
+    public int GetNeighborCount(int row, int column)
     {
         var amountNeighbors = 0;
         for (var rowoffset= -1; rowoffset <= 1 ; rowoffset++)
