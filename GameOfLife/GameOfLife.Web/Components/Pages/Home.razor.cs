@@ -11,7 +11,7 @@ public partial class Home : ComponentBase
         var board = new Board(getGameHeight, getGameWidth, getGameAliveCellsPercent);
     }
 
-    private void PrintGameInputs()
+    public void PrintGameInputs()
     {
         Console.WriteLine(getGameHeight);
         Console.WriteLine(getGameWidth);
