@@ -9,7 +9,7 @@ public class Board
 
     public Board(int height, int width, int aliveCellsPercent)
     {
-        ValidateBoard(height, width, aliveCellsPercent);
+        //ValidateBoard(height, width, aliveCellsPercent);
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
     }
 
@@ -27,7 +27,7 @@ public class Board
         
         return playingField;
     }
-
+    /*
     private static void ValidateBoard(int height, int width, int aliveCellsPercent)
     {
         if (width <= 0)
@@ -44,7 +44,7 @@ public class Board
         {
             throw new ArgumentOutOfRangeException(nameof(aliveCellsPercent), "Alive Cells must be between greater or equal to 0 and less or equal to 100.");
         }
-    }
+    } */
     
     public void AdvanceGeneration()
     {
