@@ -1,5 +1,6 @@
 .page-container{
     background-color: #87c7ff;
+    text-align: center;
     font-family: Arial, sans-serif;
     height: 100vh;
 }
@@ -31,4 +32,9 @@ h1 {
 h2 {
     background-color: #607d8b;
     color: #ffffff;
+}
+.line{
+    border-width: 5px;
+    color: black;
+    opacity: 1;
 }
