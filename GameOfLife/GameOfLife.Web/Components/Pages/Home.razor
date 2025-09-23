@@ -1,24 +1,28 @@
 @page "/"
 
 <PageTitle>Game Of Life</PageTitle>
-<header>
-    <body style="background-color: #87c7ff" ;>
-    <h1>Welcome to Game Of Life!</h1>
-    </body>
-</header>
-<body>
-    <form @onsubmit="@GameHeight">
+<link rel="stylesheet" href="C:\Development\Git Projects\GameOfLife\GameOfLife\GameOfLife\GameOfLife.Web\Components\Layout\MainLayout.razor.css">
+
+<div class="page-container">
+    <header>
+        <h1 style="background-color: #87c7ff">Welcome to Game Of Life!</h1>
+    </header>
+    <form @onsubmit="@PrintGameInputs">
         <p>Before we start...</p>
         <p>Please enter the specifics of your game...</p>
-        <label for="gameHeight">Height (between 1 and 50):</label>
-        <input type="number" id="gameHeight" name="height" min="1" max="50" @bind="getGameHeight">
+        <label for="gameHeight">Height (between 1 and 3000):</label>
+        <input type="number" id="gameHeight" name="height" min="50" max="3000" @bind="getGameHeight">
         <p></p>
-        <label for="gameWidth">Width (between 1 and 50):</label>
-        <input type="number" id="gameWidth" name="width" min="1" max="50" @bind="getGameWidth">
+        <label for="gameWidth">Width (between 1 and 3000):</label>
+        <input type="number" id="gameWidth" name="width" min="50" max="3000" @bind="getGameWidth">
         <p></p>
         <label for="gameAliveCellsPercent">The Chance that a cell is alive (between 1 and 100):</label>
         <input type="number" id="gameAliveCellsPercent" name="aliveCellsPercent" min="1" max="100" @bind="getGameAliveCellsPercent">
         <p></p>
         <input type="submit" value="Submit">
     </form>
-</body>
+
+    <footer>
+        <p>Entwickelt von Tim</p>
+    </footer>
+</div>

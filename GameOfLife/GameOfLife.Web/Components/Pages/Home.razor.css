@@ -1,0 +1,34 @@
+.page-container{
+    background-color: #87c7ff;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+}
+
+footer {
+    color: white;
+    background-color: black;
+    padding: 7px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+header {
+    padding: 30px;
+    text-align: center;
+    font-family: 'Bubblegum Sans';font-size: 22px;
+    font-size: 45px
+}
+
+
+
+h1 {
+    color: #333333;
+    text-align: center;
+    text-shadow: 2px 2px 4px #cccccc;
+}
+h2 {
+    background-color: #607d8b;
+    color: #ffffff;
+}
