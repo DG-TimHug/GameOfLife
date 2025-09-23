@@ -8,8 +8,7 @@
         <h1 style="background-color: #87c7ff">Welcome to Game Of Life!</h1>
     </header>
     <form @onsubmit="@PrintGameInputs">
-        <p>Before we start...</p>
-        <p>Please enter the specifics of your game...</p>
+        <h3><p>Please enter the specifics of your game...</p></h3>
         <label for="gameHeight">Height (between 1 and 3000):</label>
         <input type="number" id="gameHeight" name="height" min="50" max="3000" @bind="getGameHeight">
         <p></p>
