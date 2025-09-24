@@ -4,3 +4,11 @@
     font-family: Arial, sans-serif;
     height: 100vh;
 }
+.cell {
+    aspect-ratio: 1 / 1;  /* keeps cells square */
+    background: #222;     /* dead cell color */
+}
+
+.cell-alive {
+    background: #4ade80;  /* alive cell color */
+}

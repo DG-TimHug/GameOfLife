@@ -9,10 +9,10 @@
     <form @onsubmit="@PrintGameInputs">
         <h3>Please enter the specifics of your game...</h3>
         <label for="gameHeight">Height (between 50 and 3000):</label>
-        <input type="number" id="gameHeight" name="height" min="50" max="3000" @bind="GameHeight">
+        <input type="number" id="gameHeight" name="height" min="10" max="3000" @bind="GameHeight">
         <p></p>
         <label for="gameWidth">Width (between 50 and 3000):</label>
-        <input type="number" id="gameWidth" name="width" min="50" max="3000" @bind="GameWidth">
+        <input type="number" id="gameWidth" name="width" min="10" max="3000" @bind="GameWidth">
         <p></p>
         <label for="gameAliveCellsPercent">The Chance that a cell is alive (between 1 and 100):</label>
         <input type="number" id="gameAliveCellsPercent" name="aliveCellsPercent" min="1" max="100" @bind="GameAliveCellsPercent">

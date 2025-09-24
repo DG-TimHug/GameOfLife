@@ -48,16 +48,13 @@ public class Board
     
     public void AdvanceGeneration()
     {
-        var updatedCell = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
         for (var row = 0; row < PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < PlayingField.GetLength(1); column++)
             {
-                updatedCell[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
+                PlayingField[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
             }
         }
-
-        PlayingField = updatedCell;
     }
 
     public static bool ApplyRules(int amountNeighbors, bool cellState)
@@ -87,7 +84,7 @@ public class Board
         }
         return false;
     }
-
+    
     public bool IsGameAlive()
     {
         for (var row = 0; row < PlayingField.GetLength(0); row++)

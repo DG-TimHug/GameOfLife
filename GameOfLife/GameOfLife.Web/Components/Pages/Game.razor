@@ -1,15 +1,25 @@
 @page "/Game/{GameHeight:int}/{GameWidth:int}/{GameAliveCellsPercent:int}"
 
-<div class="page-container">
-    <div style="display:grid; grid-template-columns:repeat(@GameWidth, 1fr); gap:1px;">
-        @for (int w = 0; w < GameWidth; w++)
-        {
-            @for (int h = 0; h < GameHeight; h++)
+@if (board != null)
+{
+    <div class="page-container">
+        <div style="display:grid; grid-template-columns:repeat(@GameWidth, 1fr);">
+            @for (int row = 0; row < board.PlayingField.GetLength(0); row++)
             {
-                <div style="background:lightblue; border:1px solid black; text-align:center; aspect-ratio: 0.01/0.01;">
-                    
-                </div>
+                @for (int column = 0; column < board.PlayingField.GetLength(1); column++)
+                {
+                    <div style="background:lightblue; border:1px solid black; text-align:center; aspect-ratio: 0.01/0.01;">
+                        @if (board.PlayingField[row, column])
+                        {
+                            <div class="cell-alive"/>
+                        }
+                        else
+                        {
+                            <div class="cell"/>
+                        }
+                    </div>
+                }
             }
-        }
+        </div>
     </div>
-</div>
+}
