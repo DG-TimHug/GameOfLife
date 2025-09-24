@@ -9,13 +9,13 @@
     <form @onsubmit="@PrintGameInputs">
         <h3>Please enter the specifics of your game...</h3>
         <label for="gameHeight">Height (between 50 and 3000):</label>
-        <input type="number" id="gameHeight" name="height" min="50" max="3000" @bind="getGameHeight">
+        <input type="number" id="gameHeight" name="height" min="50" max="3000" @bind="GameHeight">
         <p></p>
         <label for="gameWidth">Width (between 50 and 3000):</label>
-        <input type="number" id="gameWidth" name="width" min="50" max="3000" @bind="getGameWidth">
+        <input type="number" id="gameWidth" name="width" min="50" max="3000" @bind="GameWidth">
         <p></p>
         <label for="gameAliveCellsPercent">The Chance that a cell is alive (between 1 and 100):</label>
-        <input type="number" id="gameAliveCellsPercent" name="aliveCellsPercent" min="1" max="100" @bind="getGameAliveCellsPercent">
+        <input type="number" id="gameAliveCellsPercent" name="aliveCellsPercent" min="1" max="100" @bind="GameAliveCellsPercent">
         <p></p>
         <input type="submit" value="Submit">
         <hr class="line"/>

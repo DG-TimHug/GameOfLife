@@ -1,20 +1,22 @@
 using Microsoft.AspNetCore.Components;
 namespace GameOfLife.Web.Components.Pages;
 
-public partial class Home : ComponentBase
+public partial class Home
 {
-    private int getGameHeight;
-    private int getGameWidth;
-    private int getGameAliveCellsPercent;
+    [Inject] public required NavigationManager NavigationManager { get; set; }
+    public int GameHeight;
+    public int GameWidth;
+    public int GameAliveCellsPercent;
     protected override void OnInitialized()
     {
-        var board = new Board(getGameHeight, getGameWidth, getGameAliveCellsPercent);
+        var board = new Board(GameHeight, GameWidth, GameAliveCellsPercent);
     }
 
     public void PrintGameInputs()
     {
-        Console.WriteLine(getGameHeight);
-        Console.WriteLine(getGameWidth);
-        Console.WriteLine(getGameAliveCellsPercent);
+        Console.WriteLine(GameHeight);
+        Console.WriteLine(GameWidth);
+        Console.WriteLine(GameAliveCellsPercent);
+        NavigationManager.NavigateTo($"/Game/{GameHeight}/{GameWidth}/{GameAliveCellsPercent}");
     }
 }

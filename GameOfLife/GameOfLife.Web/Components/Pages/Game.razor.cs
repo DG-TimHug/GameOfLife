@@ -11,5 +11,5 @@ public partial class Game
     public int GameWidth { get; set; }
     
     [Parameter]
-    public int AliveCellsPercent { get; set; }
+    public int GameAliveCellsPercent { get; set; }
 }
