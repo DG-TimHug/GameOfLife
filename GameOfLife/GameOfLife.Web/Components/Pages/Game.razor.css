@@ -3,6 +3,9 @@
     text-align: center;
     font-family: Arial, sans-serif;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .cell {
     aspect-ratio: 1 / 1;  /* keeps cells square */
