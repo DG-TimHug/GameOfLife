@@ -8,8 +8,8 @@ internal static class Program
         Console.WriteLine("Before starting lets set the playing field size");
         var boardWidth = GetWindowWidth();
         var boardHeight = GetWindowHeight();
-        var aliveCellsPrecent = GetAliveCellsPercent();
-        var board = new Board(boardHeight, boardWidth, aliveCellsPrecent);
+        var aliveCellsPercent = GetAliveCellsPercent();
+        var board = new Board(boardHeight, boardWidth, aliveCellsPercent);
         Console.Clear();
         Console.CursorVisible = false;
         do

@@ -9,7 +9,7 @@ public class Board
 
     public Board(int height, int width, int aliveCellsPercent)
     {
-        ValidateBoard(height, width, aliveCellsPercent);
+        //ValidateBoard(height, width, aliveCellsPercent);
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
     }
 
@@ -27,7 +27,7 @@ public class Board
         
         return playingField;
     }
-
+    /*
     private static void ValidateBoard(int height, int width, int aliveCellsPercent)
     {
         if (width <= 0)
@@ -44,20 +44,17 @@ public class Board
         {
             throw new ArgumentOutOfRangeException(nameof(aliveCellsPercent), "Alive Cells must be between greater or equal to 0 and less or equal to 100.");
         }
-    }
+    } */
     
     public void AdvanceGeneration()
     {
-        var updatedCell = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
         for (var row = 0; row < PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < PlayingField.GetLength(1); column++)
             {
-                updatedCell[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
+                PlayingField[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
             }
         }
-
-        PlayingField = updatedCell;
     }
 
     public static bool ApplyRules(int amountNeighbors, bool cellState)
@@ -87,7 +84,7 @@ public class Board
         }
         return false;
     }
-
+    
     public bool IsGameAlive()
     {
         for (var row = 0; row < PlayingField.GetLength(0); row++)
