@@ -73,14 +73,26 @@ public class Board
     public int GetNeighborCount(int row, int column)
     {
         var amountNeighbors = 0;
+        
         for (var rowOffSet= -1; rowOffSet <= 1 ; rowOffSet++)
         {
             for (var columnOffSet = -1; columnOffSet <= 1 ; columnOffSet++)
             {
-                if (rowOffSet == 0 && columnOffSet == 0) continue;
-                var newRow = row + rowOffSet;
-                var newColumn = column + columnOffSet;
-                if (newRow < PlayingField.GetLength(0) && newColumn < PlayingField.GetLength(1) && newRow >= 0 && newColumn >= 0 && PlayingField[newRow, newColumn])
+                if (rowOffSet == 0 && columnOffSet == 0)
+                {
+                    continue;
+                }
+                
+                var currentRow = row + rowOffSet;
+                var currentColumn = column + columnOffSet;
+
+                if (currentRow < 0 || currentRow >= PlayingField.GetLength(0) || currentColumn < 0 ||
+                    currentColumn >= PlayingField.GetLength(1))
+                {
+                    continue;
+                }
+                
+                if (PlayingField[currentRow, currentColumn])
                 {
                     amountNeighbors++;
                 }
