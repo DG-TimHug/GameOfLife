@@ -23,9 +23,8 @@ public partial class Game : IDisposable
     {
         if (firstRender)
         {
-            var generations = 0;
-            timer = new System.Timers.Timer(500);
-            timer.Elapsed += (s, e) =>
+            timer = new Timer(500);
+            timer.Elapsed += (s,e) =>
             {
                 InvokeAsync(() =>
                 {
@@ -38,8 +37,6 @@ public partial class Game : IDisposable
 
                     board.AdvanceGeneration();
                     StateHasChanged();
-                    generations++;
-                    Console.WriteLine(generations);
                 });
             };
             timer.Start();

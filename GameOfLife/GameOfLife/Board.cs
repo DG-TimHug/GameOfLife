@@ -1,15 +1,10 @@
 ﻿namespace GameOfLife;
-/*
- * MASTER TO-DO:
- * 
- */
 public class Board
 {
     public bool[,] PlayingField { get; private set; }
 
     public Board(int height, int width, int aliveCellsPercent)
     {
-        //ValidateBoard(height, width, aliveCellsPercent);
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
     }
 
@@ -27,24 +22,6 @@ public class Board
         
         return playingField;
     }
-    /*
-    private static void ValidateBoard(int height, int width, int aliveCellsPercent)
-    {
-        if (width <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(width), "Width must be greater than 0");
-        }
-
-        if (height <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(height), "Height must be greater than 0");
-        }
-
-        if (aliveCellsPercent is <= 0 or >= 100)
-        {
-            throw new ArgumentOutOfRangeException(nameof(aliveCellsPercent), "Alive Cells must be between greater or equal to 0 and less or equal to 100.");
-        }
-    } */
     
     public void AdvanceGeneration()
     {
@@ -104,12 +81,12 @@ public class Board
     public int GetNeighborCount(int row, int column)
     {
         var amountNeighbors = 0;
-        for (var rowoffset= -1; rowoffset <= 1 ; rowoffset++)
+        for (var rowOffSet= -1; rowOffSet <= 1 ; rowOffSet++)
         {
             for (var columnOffSet = -1; columnOffSet <= 1 ; columnOffSet++)
             {
-                if (rowoffset == 0 && columnOffSet == 0) continue;
-                var newRow = row + rowoffset;
+                if (rowOffSet == 0 && columnOffSet == 0) continue;
+                var newRow = row + rowOffSet;
                 var newColumn = column + columnOffSet;
                 if (newRow < PlayingField.GetLength(0) && newColumn < PlayingField.GetLength(1) && newRow >= 0 && newColumn >= 0 && PlayingField[newRow, newColumn])
                 {
