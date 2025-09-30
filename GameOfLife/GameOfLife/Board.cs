@@ -1,15 +1,10 @@
 ﻿namespace GameOfLife;
-/*
- * MASTER TO-DO:
- * 
- */
 public class Board
 {
     public bool[,] PlayingField { get; private set; }
 
     public Board(int height, int width, int aliveCellsPercent)
     {
-        ValidateBoard(height, width, aliveCellsPercent);
         PlayingField = GenerateRandomPlayingField(height, width, aliveCellsPercent);
     }
 
@@ -21,54 +16,31 @@ public class Board
         {
             for (var column = 0; column < width; column++)
             {
-                playingField[row, column] = rand.Next(100) < aliveCellsPrecent;
+                playingField[row, column] = rand.Next(100 + 1) < aliveCellsPrecent;
             }
         }
         
         return playingField;
     }
-
-    private static void ValidateBoard(int height, int width, int aliveCellsPercent)
-    {
-        if (width <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(width), "Width must be greater than 0");
-        }
-
-        if (height <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(height), "Height must be greater than 0");
-        }
-
-        if (aliveCellsPercent is <= 0 or >= 100)
-        {
-            throw new ArgumentOutOfRangeException(nameof(aliveCellsPercent), "Alive Cells must be between greater or equal to 0 and less or equal to 100.");
-        }
-    }
     
     public void AdvanceGeneration()
     {
-        var updatedCell = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
+        bool[,] updatedCells = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
         for (var row = 0; row < PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < PlayingField.GetLength(1); column++)
             {
-                updatedCell[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
+                updatedCells[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
             }
         }
 
-        PlayingField = updatedCell;
+        PlayingField = updatedCells;
     }
 
     public static bool ApplyRules(int amountNeighbors, bool cellState)
     {
         if (cellState)
         {
-            if (amountNeighbors < 2)
-            {
-                return false;
-            }
-
             if (amountNeighbors is 2 or 3)
             {
                 return true;
@@ -76,18 +48,15 @@ public class Board
         }
         else
         {
-            if (amountNeighbors > 3)
+            if (amountNeighbors == 3)
             {
-                return false;
+                return true;
             }
         }
-        if (amountNeighbors == 3)
-        {
-            return true;
-        }
+        
         return false;
     }
-
+    
     public bool IsGameAlive()
     {
         for (var row = 0; row < PlayingField.GetLength(0); row++)
@@ -107,16 +76,25 @@ public class Board
     public int GetNeighborCount(int row, int column)
     {
         var amountNeighbors = 0;
-        for (var rowoffset= -1; rowoffset <= 1 ; rowoffset++)
+        
+        for (var rowOffSet= -1; rowOffSet <= 1 ; rowOffSet++)
         {
             for (var columnOffSet = -1; columnOffSet <= 1 ; columnOffSet++)
             {
-                if (rowoffset == 0 && columnOffSet == 0) continue;
-                var newRow = row + rowoffset;
-                var newColumn = column + columnOffSet;
-                if (newRow < PlayingField.GetLength(0) && newColumn < PlayingField.GetLength(1) && newRow >= 0 && newColumn >= 0 && PlayingField[newRow, newColumn])
+                if (rowOffSet == 0 && columnOffSet == 0)
                 {
-                    amountNeighbors++;
+                    continue;
+                }
+                
+                var currentRow = row + rowOffSet;
+                var currentColumn = column + columnOffSet;
+
+                if (currentRow >= 0 && currentRow < PlayingField.GetLength(0) && currentColumn >= 0 && currentColumn < PlayingField.GetLength(1))
+                {
+                    if (PlayingField[currentRow, currentColumn])
+                    {
+                        amountNeighbors++;
+                    }
                 }
             }
         }

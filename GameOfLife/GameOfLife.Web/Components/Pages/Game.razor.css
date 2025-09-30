@@ -1,0 +1,17 @@
+.page-container{
+    background-color: #87c7ff;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cell {
+    aspect-ratio: 1 / 1;
+    background: #222;
+}
+
+.cell-alive {
+    background: #4ade80;
+}
