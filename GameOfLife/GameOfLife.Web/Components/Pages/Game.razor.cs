@@ -1,41 +1,53 @@
 using Microsoft.AspNetCore.Components;
+using Timer = System.Timers.Timer;
 
 namespace GameOfLife.Web.Components.Pages;
 
-public partial class Game
+public partial class Game : IDisposable
 {
-    [Parameter]
-    public int GameHeight { get; set; }
-    
-    [Parameter]
-    public int GameWidth { get; set; }
-    
-    [Parameter]
-    public int GameAliveCellsPercent { get; set; }
-    
-    private Board? board;
-    
-    protected override Task OnAfterRenderAsync(bool firstRender)
+    [Parameter] public int GameHeight { get; set; }
+
+    [Parameter] public int GameWidth { get; set; }
+
+    [Parameter] public int GameAliveCellsPercent { get; set; }
+
+    private Board board = null!;
+    private Timer timer = null!;
+
+    protected override void OnParametersSet()
     {
-        var amountgenerations = 0;
+        board = new Board(GameHeight, GameWidth, GameAliveCellsPercent);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
         if (firstRender)
         {
-            Console.WriteLine("GamePage loaded");
-            board = new Board(GameHeight, GameWidth, GameAliveCellsPercent);
-
-            
-            while (board.IsGameAlive())
+            var generations = 0;
+            timer = new System.Timers.Timer(500);
+            timer.Elapsed += (s, e) =>
             {
-                Thread.Sleep(250);
-                board.AdvanceGeneration();
-                StateHasChanged();
-                amountgenerations++;
-                Console.WriteLine($"Current generation {amountgenerations}");
-            }
-        }
+                InvokeAsync(() =>
+                {
+                    if (!board.IsGameAlive())
+                    {
+                        timer.Stop();
+                        timer.Dispose();
+                        return;
+                    }
 
-        Console.WriteLine("Finished 🔮");
-        Console.WriteLine($"Total Generations {amountgenerations}");
-        return Task.CompletedTask;
+                    board.AdvanceGeneration();
+                    StateHasChanged();
+                    generations++;
+                    Console.WriteLine(generations);
+                });
+            };
+            timer.Start();
+        }
+    }
+
+    public void Dispose()
+    {
+        timer.Dispose();
     }
 }

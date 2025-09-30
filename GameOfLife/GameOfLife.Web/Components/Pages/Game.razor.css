@@ -8,10 +8,10 @@
     align-items: center;
 }
 .cell {
-    aspect-ratio: 1 / 1;  /* keeps cells square */
-    background: #222;     /* dead cell color */
+    aspect-ratio: 1 / 1;
+    background: #222;
 }
 
 .cell-alive {
-    background: #4ade80;  /* alive cell color */
+    background: #4ade80;
 }
