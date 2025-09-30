@@ -38,11 +38,6 @@ public class Board
     {
         if (cellState)
         {
-            if (amountNeighbors < 2)
-            {
-                return false;
-            }
-
             if (amountNeighbors is 2 or 3)
             {
                 return true;
@@ -50,15 +45,12 @@ public class Board
         }
         else
         {
-            if (amountNeighbors > 3)
+            if (amountNeighbors == 3)
             {
-                return false;
+                return true;
             }
         }
-        if (amountNeighbors == 3)
-        {
-            return true;
-        }
+        
         return false;
     }
     
