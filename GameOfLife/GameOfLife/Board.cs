@@ -16,7 +16,7 @@ public class Board
         {
             for (var column = 0; column < width; column++)
             {
-                playingField[row, column] = rand.Next(100) < aliveCellsPrecent;
+                playingField[row, column] = rand.Next(100 + 1) < aliveCellsPrecent;
             }
         }
         
@@ -25,13 +25,16 @@ public class Board
     
     public void AdvanceGeneration()
     {
+        bool[,] updatedCells = new bool[PlayingField.GetLength(0), PlayingField.GetLength(1)];
         for (var row = 0; row < PlayingField.GetLength(0); row++)
         {
             for (var column = 0; column < PlayingField.GetLength(1); column++)
             {
-                PlayingField[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
+                updatedCells[row, column] = ApplyRules(GetNeighborCount(row, column), PlayingField[row, column]);
             }
         }
+
+        PlayingField = updatedCells;
     }
 
     public static bool ApplyRules(int amountNeighbors, bool cellState)
@@ -86,15 +89,12 @@ public class Board
                 var currentRow = row + rowOffSet;
                 var currentColumn = column + columnOffSet;
 
-                if (currentRow < 0 || currentRow >= PlayingField.GetLength(0) || currentColumn < 0 ||
-                    currentColumn >= PlayingField.GetLength(1))
+                if (currentRow >= 0 && currentRow < PlayingField.GetLength(0) && currentColumn >= 0 && currentColumn < PlayingField.GetLength(1))
                 {
-                    continue;
-                }
-                
-                if (PlayingField[currentRow, currentColumn])
-                {
-                    amountNeighbors++;
+                    if (PlayingField[currentRow, currentColumn])
+                    {
+                        amountNeighbors++;
+                    }
                 }
             }
         }
