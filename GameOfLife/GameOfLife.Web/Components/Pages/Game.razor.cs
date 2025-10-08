@@ -10,6 +10,8 @@ public partial class Game : IDisposable
     [Parameter] public int GameWidth { get; set; }
 
     [Parameter] public int GameAliveCellsPercent { get; set; }
+    
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
     private Board board = null!;
     private Timer gameTimer = null!;
@@ -31,9 +33,7 @@ public partial class Game : IDisposable
                 {
                     if (!board.IsGameAlive())
                     {
-                        gameTimer.Stop();
-                        gameTimer.Dispose();
-                        Console.WriteLine("Game Over!");
+                        GameOver();
                         return;
                     }
 
@@ -61,6 +61,15 @@ public partial class Game : IDisposable
             isGamePaused = false;
             StateHasChanged();
         }
+    }
+    
+    private void GameOver()
+    {
+        gameTimer.Stop();
+        Dispose();
+        StateHasChanged();
+        Console.WriteLine("Game Over!");
+        NavigationManager.NavigateTo($"/");
     }
     public void Dispose()
     {
