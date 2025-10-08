@@ -17,10 +17,11 @@ public partial class Game : IDisposable
     
     [Inject] public required IJSRuntime JsRuntime { get; set; }
     
-    private double menuStartX { get; set; }
-    private double menuStartY { get; set; }
-    private double menuOffsetX { get; set; }
-    private double menuOffsetY { get; set; }
+    private bool isDragging { get; set; }
+    private double menuX { get; set; } = 200;
+    private double menuY { get; set; } = 150;
+    private double offsetX { get; set; }
+    private double offsetY { get; set; }
 
     private Board board = null!;
     private Timer gameTimer = null!;
@@ -99,15 +100,22 @@ public partial class Game : IDisposable
         gameTimer.Dispose();
     }
     
-    private void OnDragStart(DragEventArgs args)
+    private void StartDrag(MouseEventArgs args)
     {
-        menuStartX = args.ClientX;
-        menuStartY = args.ClientY;
+        isDragging = true;
+        offsetX = args.ClientX - menuX;
+        offsetY = args.ClientY - menuY;
     }
-    
-    private void OnDragEnd(DragEventArgs args)
+
+    private void EndDrag(MouseEventArgs args)
     {
-        menuOffsetX += args.ClientX - menuStartX;
-        menuOffsetY += args.ClientY - menuStartY;
+        isDragging = false;
+    }
+
+    private void OnMouseMove(MouseEventArgs args)
+    {
+        if (!isDragging) return;
+        menuX = args.ClientX - offsetX;
+        menuY = args.ClientY - offsetY;
     }
 }

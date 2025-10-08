@@ -22,8 +22,8 @@
             }
         </div>
     </div>
-    <div class="simple-menu" style="top: @(menuOffsetY)px; left: @(menuOffsetX)px;">
-        <div class="menu-header" draggable="true" @ondragend="OnDragEnd" @ondragstart="OnDragStart" >Game Menu</div>
+    <div class="simple-menu" style="top: @(menuY)px; left: @(menuX)px;">
+        <div class="menu-header" @onmousedown="StartDrag" @onmouseup="EndDrag" @onmousemove="OnMouseMove">Game Menu</div>
         <div class="menu-content">
             @if (isGamePaused)
             {
