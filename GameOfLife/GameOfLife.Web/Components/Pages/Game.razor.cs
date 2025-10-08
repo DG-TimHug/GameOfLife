@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using Timer = System.Timers.Timer;
 
 namespace GameOfLife.Web.Components.Pages;
@@ -12,6 +13,8 @@ public partial class Game : IDisposable
     [Parameter] public int GameAliveCellsPercent { get; set; }
     
     [Inject] public required NavigationManager NavigationManager { get; set; }
+    
+    [Inject] public required IJSRuntime JsRuntime { get; set; }
 
     private Board board = null!;
     private Timer gameTimer = null!;

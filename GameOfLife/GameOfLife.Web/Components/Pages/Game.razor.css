@@ -15,3 +15,17 @@
 .cell-alive {
     background: #4ade80;
 }
+.simple-menu {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.simple-menu button {
+    margin-right: 5px;
+}

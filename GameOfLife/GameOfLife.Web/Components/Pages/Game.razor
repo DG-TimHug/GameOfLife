@@ -1,26 +1,7 @@
 @page "/Game/{GameHeight:int}/{GameWidth:int}/{GameAliveCellsPercent:int}"
 
 @if (board != null)
-{
-    <button onclick="document.getElementById('modal').showModal()">Menu</button>
-    <dialog id="modal" style="align-self: flex-end">
-        <h1>Game Menu</h1>
-        <p>Current Status: @(isGamePaused ? "Paused" : "Running")</p>
-
-        @if (isGamePaused)
-        {
-            <button type="button" @onclick="ResumeGame">Resume Game</button>
-        }
-        else
-        {
-            <button type="button" @onclick="PauseGame">Pause Game</button>
-        }
-        
-        <button type="button" @onclick="GameOver">End Game</button>
-        <form method="dialog">
-            <button>Close</button>
-        </form>
-    </dialog>
+{   
     <div class="page-container">
         <div style="display:grid; width: auto; grid-template-columns:repeat(@GameWidth, 1fr);">
             @for (var row = 0; row < board.PlayingField.GetLength(0); row++)
@@ -40,5 +21,16 @@
                 }
             }
         </div>
+    </div>
+    <div class="simple-menu">
+        @if (isGamePaused)
+        {
+            <button @onclick="ResumeGame">▶ Play</button>
+        }
+        else
+        {
+            <button @onclick="PauseGame">⏸ Pause</button>
+        }
+        <button @onclick="GameOver">Exit</button>
     </div>
 }
