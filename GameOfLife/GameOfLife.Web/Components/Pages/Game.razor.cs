@@ -124,6 +124,11 @@ public partial class Game : IDisposable
         if (GameHeight > GameWidth)
         {
             return $"height: calc(99vh / {GameHeight}); max-width: 100vw;";
+        } 
+        
+        if (GameHeight == GameWidth)
+        {
+            return $"height: calc(99vh / {GameHeight}); max-width: 100vw;";
         }
 
         return $"width: calc(99vw / {GameWidth}); max-height: 100vh;";
