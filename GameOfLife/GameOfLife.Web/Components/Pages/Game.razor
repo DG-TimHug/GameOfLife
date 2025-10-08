@@ -23,14 +23,19 @@
         </div>
     </div>
     <div class="simple-menu">
-        @if (isGamePaused)
-        {
-            <button @onclick="ResumeGame">▶ Play</button>
-        }
-        else
-        {
-            <button @onclick="PauseGame">⏸ Pause</button>
-        }
-        <button @onclick="GameOver">Exit</button>
+        <div class="menu-header">Game Menu</div>
+        <div class="menu-content">
+            @if (isGamePaused)
+            {
+                <button @onclick="ResumeGame">▶ Play</button>
+            }
+            else
+            {
+                <button @onclick="PauseGame">⏸ Pause</button>
+            }
+            <button @onclick="ExitGame">Exit</button>
+            
+            <button @onclick="RestartGame">Restart</button>
+        </div>
     </div>
-}
+   }

@@ -68,12 +68,26 @@ public partial class Game : IDisposable
     
     private void GameOver()
     {
+        Thread.Sleep(2000);
         gameTimer.Stop();
         Dispose();
         StateHasChanged();
         Console.WriteLine("Game Over!");
         NavigationManager.NavigateTo($"/");
     }
+
+    private void ExitGame()
+    {
+        gameTimer.Stop();
+        StateHasChanged();
+        NavigationManager.NavigateTo($"/");
+    }
+
+    private void RestartGame()
+    {
+        NavigationManager.Refresh(true);
+    }
+    
     public void Dispose()
     {
         gameTimer.Dispose();
