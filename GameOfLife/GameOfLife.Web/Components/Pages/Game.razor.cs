@@ -24,7 +24,7 @@ public partial class Game : IDisposable
     private double offsetY { get; set; }
 
     private Board board = null!;
-    private Timer gameTimer = null!;
+    private readonly Timer gameTimer = new(500);
 
     protected override void OnParametersSet()
     {
@@ -36,7 +36,6 @@ public partial class Game : IDisposable
     {
         if (firstRender)
         {
-            gameTimer = new Timer(500);
             gameTimer.Elapsed += (s,e) =>
             {
                 InvokeAsync(() =>
