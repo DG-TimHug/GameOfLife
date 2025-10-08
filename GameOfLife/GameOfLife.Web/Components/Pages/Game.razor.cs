@@ -118,4 +118,14 @@ public partial class Game : IDisposable
         menuX = args.ClientX - offsetX;
         menuY = args.ClientY - offsetY;
     }
+
+    private string GetGameTileStyle()
+    {
+        if (GameHeight > GameWidth)
+        {
+            return $"height: calc(99vh / {GameHeight}); max-width: 100vw;";
+        }
+
+        return $"width: calc(99vw / {GameWidth}); max-height: 100vh;";
+    }
 }
