@@ -19,6 +19,7 @@ public partial class Game : IDisposable
         board = new Board(GameHeight, GameWidth, GameAliveCellsPercent);
     }
 
+    private bool isGamePaused = false;
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
@@ -43,7 +44,24 @@ public partial class Game : IDisposable
             gameTimer.Start();
         }
     }
-
+    private void PauseGame()
+    {
+        if (gameTimer != null && !isGamePaused)
+        {
+            gameTimer.Stop();
+            isGamePaused = true;
+            StateHasChanged();
+        }
+    }
+    private void ResumeGame()
+    {
+        if (gameTimer != null && isGamePaused)
+        {
+            gameTimer.Start();
+            isGamePaused = false;
+            StateHasChanged();
+        }
+    }
     public void Dispose()
     {
         gameTimer.Dispose();
