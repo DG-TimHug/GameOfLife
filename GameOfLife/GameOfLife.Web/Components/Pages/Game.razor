@@ -2,6 +2,7 @@
 
 @if (board != null)
 {
+    
     <div class="page-container">
         <div style="display:grid; width: auto; grid-template-columns:repeat(@GameWidth, 1fr);">
             @for (var row = 0; row < board.PlayingField.GetLength(0); row++)
@@ -22,4 +23,16 @@
             }
         </div>
     </div>
+    <button onclick="modal.show()">Menu </button>
+    <dialog id="modal" style="align-self: flex-end">
+        <h1>Welcome!</h1>
+        <p>Click Close or press esc to close modal</p>
+        <form method="dialog">
+            <button>Close</button>
+        </form>
+        <button type="button" method="@gameTimer.Stop()"></button>
+        <form method="@GameUnPaused()">
+            <button>Unpause Game</button>
+        </form>
+    </dialog>
 }

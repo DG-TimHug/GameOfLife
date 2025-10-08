@@ -12,7 +12,7 @@ public partial class Game : IDisposable
     [Parameter] public int GameAliveCellsPercent { get; set; }
 
     private Board board = null!;
-    private Timer timer = null!;
+    private Timer gameTimer = null!;
 
     protected override void OnParametersSet()
     {
@@ -23,15 +23,16 @@ public partial class Game : IDisposable
     {
         if (firstRender)
         {
-            timer = new Timer(500);
-            timer.Elapsed += (s,e) =>
+            gameTimer = new Timer(500);
+            gameTimer.Elapsed += (s,e) =>
             {
                 InvokeAsync(() =>
                 {
                     if (!board.IsGameAlive())
                     {
-                        timer.Stop();
-                        timer.Dispose();
+                        gameTimer.Stop();
+                        gameTimer.Dispose();
+                        Console.WriteLine("Game Over!");
                         return;
                     }
 
@@ -39,12 +40,12 @@ public partial class Game : IDisposable
                     StateHasChanged();
                 });
             };
-            timer.Start();
+            gameTimer.Start();
         }
     }
 
     public void Dispose()
     {
-        timer.Dispose();
+        gameTimer.Dispose();
     }
 }
