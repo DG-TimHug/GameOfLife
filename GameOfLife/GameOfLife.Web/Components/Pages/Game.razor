@@ -1,7 +1,7 @@
 @page "/Game/{GameHeight:int}/{GameWidth:int}/{GameAliveCellsPercent:int}"
 
 @if (board != null)
-{   
+{
     <div>
         <div class="page-container">
             <div style="display:grid; width: auto; grid-template-columns:repeat(@GameWidth, 1fr);">
@@ -9,7 +9,8 @@
                 {
                     for (var column = 0; column < board.PlayingField.GetLength(1); column++)
                     {
-                        <div style="background:lightblue; border:1px solid black; text-align:center; aspect-ratio: 1 / 1; @GetGameTileStyle() ">
+                        <div
+                            style="background:lightblue; border:1px solid black; text-align:center; aspect-ratio: 1 / 1; @GetGameTileStyle() ">
                             @if (board.PlayingField[row, column])
                             {
                                 <div class="cell-alive @row-@column"></div>
@@ -23,6 +24,11 @@
                 }
             </div>
         </div>
+        @if (!board.IsGameAlive())
+        {
+            <div class="game-over"><h1>Game Over</h1></div>
+            
+        }
         <div class="menu-overlay" @onmousemove="OnMouseMove" @onmouseup="EndDrag">
             <div class="simple-menu" style="top: @(menuY)px; left: @(menuX)px;">
                 <div class="menu-header" @onmousedown="StartDrag">Game Menu</div>
@@ -36,10 +42,10 @@
                         <button @onclick="PauseGame">⏸ Pause</button>
                     }
                     <button @onclick="ExitGame">Exit</button>
-            
+
                     <button @onclick="RestartGame">Restart</button>
                 </div>
             </div>
         </div>
     </div>
-   }
+}

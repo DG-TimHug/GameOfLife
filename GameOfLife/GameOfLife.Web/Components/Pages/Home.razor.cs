@@ -15,9 +15,6 @@ public partial class Home
 
     private void PrintGameInputs()
     {
-        Console.WriteLine(GameHeight);
-        Console.WriteLine(GameWidth);
-        Console.WriteLine(GameAliveCellsPercent);
         NavigationManager.NavigateTo($"/Game/{GameHeight}/{GameWidth}/{GameAliveCellsPercent}");
     }
     

@@ -75,11 +75,10 @@ public partial class Game : IDisposable
     
     private void GameOver()
     {
-        Thread.Sleep(2000);
+        Thread.Sleep(1250);
         gameTimer.Stop();
         Dispose();
         StateHasChanged();
-        Console.WriteLine("Game Over!");
         NavigationManager.NavigateTo($"/");
     }
 

@@ -57,3 +57,10 @@
     padding: 10px;
     background-color: whitesmoke;
 }
+.game-over {
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    color: white;
+}
