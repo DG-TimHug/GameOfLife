@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using Timer = System.Timers.Timer;
 
@@ -15,6 +16,11 @@ public partial class Game : IDisposable
     [Inject] public required NavigationManager NavigationManager { get; set; }
     
     [Inject] public required IJSRuntime JsRuntime { get; set; }
+    
+    private double menuStartX { get; set; }
+    private double menuStartY { get; set; }
+    private double menuOffsetX { get; set; }
+    private double menuOffsetY { get; set; }
 
     private Board board = null!;
     private Timer gameTimer = null!;
@@ -91,5 +97,17 @@ public partial class Game : IDisposable
     public void Dispose()
     {
         gameTimer.Dispose();
+    }
+    
+    private void OnDragStart(DragEventArgs args)
+    {
+        menuStartX = args.ClientX;
+        menuStartY = args.ClientY;
+    }
+    
+    private void OnDragEnd(DragEventArgs args)
+    {
+        menuOffsetX += args.ClientX - menuStartX;
+        menuOffsetY += args.ClientY - menuStartY;
     }
 }

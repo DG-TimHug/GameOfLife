@@ -35,6 +35,11 @@
     height: 40px;
     padding: 10px;
     background-color: lightgray;
+    cursor: move;
+}
+
+.menu-header:active {
+    cursor: grabbing;
 }
 
 .menu-content {
