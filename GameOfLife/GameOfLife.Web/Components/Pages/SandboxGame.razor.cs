@@ -31,7 +31,7 @@ public partial class SandboxGame : IDisposable
         board = new Board(GameHeight, GameWidth, GameAliveCellsPercent);
     }
 
-    private bool isGamePaused = false;
+    private bool isGamePaused = true;
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
@@ -44,7 +44,7 @@ public partial class SandboxGame : IDisposable
                     StateHasChanged();
                 });
             };
-            gameTimer.Start();
+            gameTimer.Stop();
         }
     }
     private void PauseGame()
