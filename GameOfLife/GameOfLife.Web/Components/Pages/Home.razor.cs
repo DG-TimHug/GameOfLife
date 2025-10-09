@@ -22,6 +22,6 @@ public partial class Home
     
     private void LaunchSandboxGame()
     {
-        NavigationManager.NavigateTo($"/SandboxGame/{GameHeightSandbox}/{GameWidthSandbox}/{0}");
+        NavigationManager.NavigateTo($"/SandboxGame/{GameHeightSandbox}/{GameWidthSandbox}");
     }
 }

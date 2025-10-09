@@ -10,8 +10,6 @@ public partial class SandboxGame : IDisposable
     [Parameter] public int GameHeight { get; set; }
 
     [Parameter] public int GameWidth { get; set; }
-
-    [Parameter] public int GameAliveCellsPercent { get; set; }
     
     [Inject] public required NavigationManager NavigationManager { get; set; }
     
@@ -28,7 +26,7 @@ public partial class SandboxGame : IDisposable
 
     protected override void OnParametersSet()
     {
-        board = new Board(GameHeight, GameWidth, GameAliveCellsPercent);
+        board = new Board(GameHeight, GameWidth, 0);
     }
 
     private bool isGamePaused = true;
