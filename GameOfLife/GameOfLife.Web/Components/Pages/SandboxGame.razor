@@ -1,6 +1,6 @@
 @page "/SandboxGame/{GameHeight:int}/{GameWidth:int}"
 
-<PageTitle>Game Of Life - Game</PageTitle>
+<PageTitle>Game Of Life - Sandbox</PageTitle>
 @if (board != null)
 {
     <div>
@@ -40,8 +40,22 @@
                         <button @onclick="PauseGame">⏸ Pause</button>
                     }
                     <button @onclick="ExitGame">Exit</button>
-
                     <button @onclick="RestartGame">Restart</button>
+                    <p></p>
+                    <button type="button" class="collapsible" >Game Adjustments</button>
+                    <div class="content">
+                        <form @onsubmit="@LaunchSandboxGame">
+                            <label for="gameHeight">Height (between 10 and 500):</label>
+                            <input type="number" id="gameHeight" name="height" min="10" max="3000"
+                                   @bind="GameHeightSandbox">
+                            <p></p>
+                            <label for="gameWidth">Width (between 10 and 500):</label>
+                            <input type="number" id="gameWidth" name="width" min="10" max="500"
+                                   @bind="GameWidthSandbox">
+                            <p></p>
+                            <input type="submit" value="Restart Game with new Settings">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

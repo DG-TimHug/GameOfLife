@@ -10,6 +10,8 @@ public partial class SandboxGame : IDisposable
     [Parameter] public int GameHeight { get; set; }
 
     [Parameter] public int GameWidth { get; set; }
+    private int GameHeightSandbox;
+    private int GameWidthSandbox;
     
     [Inject] public required NavigationManager NavigationManager { get; set; }
     
@@ -122,5 +124,9 @@ public partial class SandboxGame : IDisposable
             board.ToggleCell(row, column);
             StateHasChanged();
         }
+    }
+    private void LaunchSandboxGame()
+    {
+        NavigationManager.NavigateTo($"/SandboxGame/{GameHeightSandbox}/{GameWidthSandbox}");
     }
 }
