@@ -17,11 +17,11 @@ public partial class Game : IDisposable
     
     [Inject] public required IJSRuntime JsRuntime { get; set; }
     
-    private bool isDragging { get; set; }
-    private double menuX { get; set; } = 200;
-    private double menuY { get; set; } = 150;
-    private double offsetX { get; set; }
-    private double offsetY { get; set; }
+    private bool IsDragging { get; set; }
+    private double MenuX { get; set; } = 200;
+    private double MenuY { get; set; } = 150;
+    private double OffsetX { get; set; }
+    private double OffsetY { get; set; }
 
     private Board board = null!;
     private readonly Timer gameTimer = new(500);
@@ -100,21 +100,21 @@ public partial class Game : IDisposable
     
     private void StartDrag(MouseEventArgs args)
     {
-        isDragging = true;
-        offsetX = args.ClientX - menuX;
-        offsetY = args.ClientY - menuY;
+        IsDragging = true;
+        OffsetX = args.ClientX - MenuX;
+        OffsetY = args.ClientY - MenuY;
     }
 
     private void EndDrag(MouseEventArgs args)
     {
-        isDragging = false;
+        IsDragging = false;
     }
 
     private void OnMouseMove(MouseEventArgs args)
     {
-        if (!isDragging) return;
-        menuX = args.ClientX - offsetX;
-        menuY = args.ClientY - offsetY;
+        if (!IsDragging) return;
+        MenuX = args.ClientX - OffsetX;
+        MenuY = args.ClientY - OffsetY;
     }
 
     private string GetGameTileStyle()

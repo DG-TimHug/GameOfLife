@@ -31,7 +31,7 @@
             <div class="game-over"><h1>Game Over</h1></div>
         }
         <div class="menu-overlay" @onmousemove="OnMouseMove" @onmouseup="EndDrag">
-            <div class="simple-menu" style="top: @(menuY)px; left: @(menuX)px;">
+            <div class="simple-menu" style="top: @(MenuY)px; left: @(MenuX)px;">
                 <div class="menu-header" @onmousedown="StartDrag">Game Menu</div>
                 <div class="menu-content">
                     @if (isGamePaused)
