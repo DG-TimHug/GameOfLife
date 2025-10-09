@@ -11,14 +11,17 @@ public partial class Home
     [Inject] public required NavigationManager NavigationManager { get; set; }
     private int GameHeight;
     private int GameWidth;
+    private int GameHeightSandbox;
+    private int GameWidthSandbox;
     private int GameAliveCellsPercent;
 
-    private void PrintGameInputs()
+    private void LaunchGame()
     {
-        Console.WriteLine(GameHeight);
-        Console.WriteLine(GameWidth);
-        Console.WriteLine(GameAliveCellsPercent);
         NavigationManager.NavigateTo($"/Game/{GameHeight}/{GameWidth}/{GameAliveCellsPercent}");
     }
     
+    private void LaunchSandboxGame()
+    {
+        NavigationManager.NavigateTo($"/SandboxGame/{GameHeightSandbox}/{GameWidthSandbox}");
+    }
 }

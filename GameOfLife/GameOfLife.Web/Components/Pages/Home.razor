@@ -1,12 +1,12 @@
 @page "/"
 
-<PageTitle>Game Of Life</PageTitle>
+<PageTitle>Game Of Life - Home</PageTitle>
 
 <div class="page-container">
     <header>
         <h1 style="background-color: #87c7ff">Welcome to Game Of Life!</h1>
     </header>
-    <form @onsubmit="@PrintGameInputs">
+    <form @onsubmit="@LaunchGame">
         <h3>Please enter the specifics of your game...</h3>
         <label for="gameHeight">Height (between 10 and 500):</label>
         <input type="number" id="gameHeight" name="height" min="10" max="3000" @bind="GameHeight">
@@ -17,10 +17,21 @@
         <label for="gameAliveCellsPercent">The Chance that a cell is alive (between 1 and 100):</label>
         <input type="number" id="gameAliveCellsPercent" name="aliveCellsPercent" min="1" max="100" @bind="GameAliveCellsPercent">
         <p></p>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Launch Game">
         <hr class="line"/>
     </form>
-
+    <form @onsubmit="@LaunchSandboxGame">
+        <h3>Sandbox Mode</h3>
+        <h3>Please enter the specifics of your game...</h3>
+        <label for="gameHeight">Height (between 10 and 500):</label>
+        <input type="number" id="gameHeight" name="height" min="10" max="3000" @bind="GameHeightSandbox">
+        <p></p>
+        <label for="gameWidth">Width (between 10 and 500):</label>
+        <input type="number" id="gameWidth" name="width" min="10" max="500" @bind="GameWidthSandbox">
+        <p></p>
+        <input type="submit" value="Launch Game in SandboxMode">
+    </form>
+    
     <footer>
         <p>Entwickelt von Tim</p>
     </footer>

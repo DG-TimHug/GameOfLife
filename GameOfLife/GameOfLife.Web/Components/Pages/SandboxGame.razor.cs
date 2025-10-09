@@ -5,13 +5,14 @@ using Timer = System.Timers.Timer;
 
 namespace GameOfLife.Web.Components.Pages;
 
-public partial class Game : IDisposable
+public partial class SandboxGame : IDisposable
 {
     [Parameter] public int GameHeight { get; set; }
 
     [Parameter] public int GameWidth { get; set; }
-
-    [Parameter] public int GameAliveCellsPercent { get; set; }
+    private int GameHeightSandbox;
+    private int GameWidthSandbox;
+    private bool ShowAdvancedMenu = false;
     
     [Inject] public required NavigationManager NavigationManager { get; set; }
     
@@ -28,10 +29,10 @@ public partial class Game : IDisposable
 
     protected override void OnParametersSet()
     {
-        board = new Board(GameHeight, GameWidth, GameAliveCellsPercent);
+        board = new Board(GameHeight, GameWidth, 0);
     }
 
-    private bool isGamePaused = false;
+    private bool isGamePaused = true;
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
@@ -40,17 +41,11 @@ public partial class Game : IDisposable
             {
                 InvokeAsync(() =>
                 {
-                    if (!board.IsGameAlive())
-                    {
-                        GameOver();
-                        return;
-                    }
-
                     board.AdvanceGeneration();
                     StateHasChanged();
                 });
             };
-            gameTimer.Start();
+            gameTimer.Stop();
         }
     }
     private void PauseGame()
@@ -70,15 +65,6 @@ public partial class Game : IDisposable
             isGamePaused = false;
             StateHasChanged();
         }
-    }
-    
-    private void GameOver()
-    {
-        Thread.Sleep(1250);
-        gameTimer.Stop();
-        Dispose();
-        StateHasChanged();
-        NavigationManager.NavigateTo($"/");
     }
 
     private void ExitGame()
@@ -140,4 +126,9 @@ public partial class Game : IDisposable
             StateHasChanged();
         }
     }
+    private void LaunchSandboxGame()
+    {
+        NavigationManager.NavigateTo($"/SandboxGame/{GameHeightSandbox}/{GameWidthSandbox}");
+    }
+
 }

@@ -101,4 +101,12 @@ public class Board
 
         return amountNeighbors;
     }
+    public void ToggleCell(int row, int column)
+    {
+        if (row >= 0 && row < PlayingField.GetLength(0) && 
+            column >= 0 && column < PlayingField.GetLength(1))
+        {
+            PlayingField[row, column] = !PlayingField[row, column];
+        }
+    }
 }
