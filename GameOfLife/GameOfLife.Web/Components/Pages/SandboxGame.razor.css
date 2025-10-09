@@ -90,11 +90,12 @@
 
 .active, .collapsible:hover {
     background-color: #555;
+    
 }
 
 .content {
     padding: 0 18px;
-    display: none;
+    color: white;
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #777;
 }

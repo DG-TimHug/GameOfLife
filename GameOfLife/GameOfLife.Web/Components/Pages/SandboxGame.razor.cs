@@ -12,6 +12,7 @@ public partial class SandboxGame : IDisposable
     [Parameter] public int GameWidth { get; set; }
     private int GameHeightSandbox;
     private int GameWidthSandbox;
+    private bool ShowAdvancedMenu = false;
     
     [Inject] public required NavigationManager NavigationManager { get; set; }
     
@@ -129,4 +130,5 @@ public partial class SandboxGame : IDisposable
     {
         NavigationManager.NavigateTo($"/SandboxGame/{GameHeightSandbox}/{GameWidthSandbox}");
     }
+
 }
