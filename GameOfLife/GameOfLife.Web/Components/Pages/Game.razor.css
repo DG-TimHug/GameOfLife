@@ -23,6 +23,7 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .simple-menu {
@@ -35,6 +36,7 @@
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.001);
     user-select: none;
+    pointer-events: auto;
 }
 
 .simple-menu button {
@@ -63,4 +65,13 @@
     left: 50vw;
     transform: translate(-50%, -50%);
     color: white;
+}
+.cell-clickable:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.cell-clickable:hover .cell,
+.cell-clickable:hover .cell-alive {
+    filter: brightness(1.2);
 }

@@ -1,25 +1,25 @@
 @page "/Game/{GameHeight:int}/{GameWidth:int}/{GameAliveCellsPercent:int}"
-
+<PageTitle>Game Of Life - Game</PageTitle>
 @if (board != null)
 {
     <div>
         <div class="page-container">
-            <div style="display:grid; width: auto; grid-template-columns:repeat(@GameWidth, 1fr);@GetGameTileStyle()"
-                 @onclick="@(() => ToggleCell(row, column))" 
-                 class="@(isGamePaused ? "cell-clickable" : "")">
+            <div style="display:grid; width: auto; grid-template-columns:repeat(@GameWidth, 1fr);">
                 @for (var row = 0; row < board.PlayingField.GetLength(0); row++)
                 {
                     for (var column = 0; column < board.PlayingField.GetLength(1); column++)
                     {
+                        var currentColumn = column;
+                        var currentRow = row;
                         <div
-                            style="background:lightblue; border:1px solid black; text-align:center; aspect-ratio: 1 / 1; @GetGameTileStyle() ">
-                            @if (board.PlayingField[row, column])
+                            style="background:lightblue; border:1px solid black; text-align:center; aspect-ratio: 1 / 1; @GetGameTileStyle()" @onclick="@(() => TryToggleCell(currentRow, currentColumn))" class="@(isGamePaused ? "cell-clickable" : "")">
+                            @if (board.PlayingField[currentRow, currentColumn])
                             {
-                                <div class="cell-alive @row-@column"></div>
+                                <div class="cell-alive @currentRow-@currentColumn"></div>
                             }
                             else
                             {
-                                <div class="cell @row-@column"></div>
+                                <div class="cell @currentRow-@currentColumn"></div>
                             }
                         </div>
                     }
