@@ -131,4 +131,13 @@ public partial class Game : IDisposable
 
         return $"width: calc(99vw / {GameWidth}); max-height: 100vh;";
     }
+    
+    private void ToggleCell(int row, int column)
+    {
+        if (isGamePaused)
+        {
+            board.PlayingField[row, column] = !board.PlayingField[row, column];
+            StateHasChanged();
+        }
+    }
 }
