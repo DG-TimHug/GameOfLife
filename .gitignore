@@ -6,7 +6,7 @@
 ## has more thorough IDE-specific entries.
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/Dotnet.gitignore
-
+C:\Development\Git Projects\GameOfLife\GameOfLife\.idea\
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

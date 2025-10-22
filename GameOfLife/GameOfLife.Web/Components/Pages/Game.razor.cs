@@ -5,7 +5,7 @@ using Timer = System.Timers.Timer;
 
 namespace GameOfLife.Web.Components.Pages;
 
-public partial class Game : IDisposable
+public partial class Game
 {
     [Parameter] public int GameHeight { get; set; }
 
@@ -15,7 +15,6 @@ public partial class Game : IDisposable
     
     [Inject] public required NavigationManager NavigationManager { get; set; }
     
-    [Inject] public required IJSRuntime JsRuntime { get; set; }
     
     private bool isDragging { get; set; }
     private double menuX { get; set; } = 200;
@@ -76,7 +75,7 @@ public partial class Game : IDisposable
     {
         Thread.Sleep(1250);
         gameTimer.Stop();
-        Dispose();
+        gameTimer.Dispose();
         StateHasChanged();
         NavigationManager.NavigateTo($"/");
     }
@@ -93,10 +92,6 @@ public partial class Game : IDisposable
         NavigationManager.Refresh(true);
     }
     
-    public void Dispose()
-    {
-        gameTimer.Dispose();
-    }
     
     private void StartDrag(MouseEventArgs args)
     {
@@ -119,16 +114,10 @@ public partial class Game : IDisposable
 
     private string GetGameTileStyle()
     {
-        if (GameHeight > GameWidth)
-        {
-            return $"height: calc(99vh / {GameHeight}); max-width: 100vw;";
-        } 
-        
-        if (GameHeight == GameWidth)
+        if (GameHeight >= GameWidth)
         {
             return $"height: calc(99vh / {GameHeight}); max-width: 100vw;";
         }
-
         return $"width: calc(99vw / {GameWidth}); max-height: 100vh;";
     }
 }
